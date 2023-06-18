@@ -11,27 +11,30 @@ background: #eee;
 .h-custom {
 height: calc(100% - 73px);
 }
+.alert-bottom {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+    }
 @media (max-width: 450px) {
 .h-custom {
 height: 100%;
 }
 }
 </style>
-@if(session('success'))
-{{-- <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body">
-        {{ session('success') }}
-    </div>
-      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-  </div> --}}
-<div class="alert alert-success">
-{{ session('success') }}
-</div>
-@endif
+
 <section class="vh-100">
+
     <div class="container-fluid h-custom">
+        @if(session('success'))
+
+        <div class="alert alert-success alert-bottom alert-dismissible" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        </div>
+        @endif
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-md-9 col-lg-6 col-xl-5">
           <img src="../assets/img/lib1.png"

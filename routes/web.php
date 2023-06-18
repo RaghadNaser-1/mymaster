@@ -32,4 +32,15 @@ Route::get('/signup', function () {
 
 // Route::post('/submit-signup', 'AuthController@signup')->name('submit.signup');
 Route::post('/submit-signup', [AuthController::class, 'signup'])->name('submit.signup');
+Route::post('/login', [AuthController::class, 'login'])->name('submit.login');
+// Route::post('/logout', [AuthController::class],'logout')->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/clear-welcome-message', function () {
+    session()->forget('welcome_message');
+    return redirect()->back();
+
+    // return response()->json(['message' => 'Welcome message cleared successfully']);
+});
+
+
 

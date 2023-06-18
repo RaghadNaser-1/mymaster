@@ -1,7 +1,22 @@
 @extends('layouts.master')
 @section('content')
+
+<style>
+    .alert-bottom {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+    }
+</style>
         <!-- Masthead-->
-       
+        @if(session('welcome_message'))
+    <div class="alert alert-success alert-bottom alert-dismissible fade show" role="alert">
+        {{ session('welcome_message') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="clearWelcomeMessage()"></button>
+    </div>
+@endif
+
 
         <header class="masthead">
             <div class="container px-4 px-lg-5 h-100">
@@ -208,5 +223,25 @@
                 </div> --}}
             </div>
         </section>
+        <script>
+            function clearWelcomeMessage() {
+                // Make an AJAX request to clear the session
+                fetch('/clear-welcome-message', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // Optional: Handle the response if needed
+                })
+                .catch(error => {
+                    console.error('An error occurred:', error); // Optional: Handle errors
+                });
+            }
+        </script>
 
         @endsection
