@@ -54,6 +54,8 @@
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
+                            {{-- <div class="mb-2"><i class="fa-regular fa-lamp-desk"></i></div> --}}
+
                             <h3 class="h4 mb-2">Sturdy Themes</h3>
                             <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
                         </div>
@@ -162,13 +164,13 @@
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                     <div class="col-lg-6">
-                        <!-- * * * * * * * * * * * * * * *-->
+                        {{-- <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- This form is pre-integrated with SB Forms.-->
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
+                        <!-- to get an API token!--> --}}
                         <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                             <!-- Name input-->
                             <div class="form-floating mb-3">

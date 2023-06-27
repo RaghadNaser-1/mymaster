@@ -15,7 +15,7 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/index', function () {
@@ -30,7 +30,6 @@ Route::get('/signup', function () {
     return view('signup');
 });
 
-// Route::post('/submit-signup', 'AuthController@signup')->name('submit.signup');
 Route::post('/submit-signup', [AuthController::class, 'signup'])->name('submit.signup');
 Route::post('/login', [AuthController::class, 'login'])->name('submit.login');
 // Route::post('/logout', [AuthController::class],'logout')->name('logout');
