@@ -29,7 +29,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index"><i class="bi bi-book"></i> Library</a>
+                <a class="navbar-brand" href="{{ route('index') }}"><i class="bi bi-book"></i> Library</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
                 <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -55,10 +55,20 @@
                         @endguest
 
                     </ul>
-                    {{-- <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-secondary" type="submit">Search</button>
-                    </form> --}}
+                    <form class="form-inline my-2 my-lg-0 d-flex" action="{{ route('books.index') }}" method="GET">
+                        <input class="form-control mr-sm-2 flex-grow-1" type="search" placeholder="Search" aria-label="Search" name="search">
+
+                        <select class="form-control mr-sm-2" name="category">
+                            <option value="">All Categories</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+
+
                 </div>
 
             </div>
