@@ -84,6 +84,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Portfolio-->
         <div id="portfolio">
             <div class="container-fluid p-0">
@@ -146,11 +147,8 @@
             </div>
         </div>
         <!-- Call to action-->
-        <section class="page-section bg-dark text-white">
-            <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-                <a class="btn btn-light btn-xl" href="https://startbootstrap.com/theme/creative/">Download Now!</a>
-            </div>
+        <section class="page-section ">
+
         </section>
         <!-- Contact-->
         <section class="page-section" id="contact">

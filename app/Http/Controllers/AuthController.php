@@ -43,26 +43,26 @@ class AuthController extends Controller
             // Authentication successful
 
             $user = Auth::user();
+            $request->session()->put('user_id', $user->id);
 
             // Store welcome message in session
-            // $request->session()->flash('success', 'Welcome, ' . $user->name . '!');
             $request->session()->put('welcome_message', "Welcome, {$user->name}!");
 
 
-            // Redirect to the desired page
-            return redirect('/index');
+            if ($user->role_id == 2) {
+                // Redirect to '/index' for role ID 2
+                return redirect('/index');
+            } elseif ($user->role_id == 1) {
+                // Redirect to '/dashboard' for role ID 1
+                return redirect('/dashboard');
+            }
         } else {
-            // Authentication failed
 
-            // Store error message in session
-            // $request->session()->flash('error', 'Invalid credentials.');
-            // $request->session()->put('error', "Invalid credentials.");
 
             return back()->withErrors([
                 'email' => 'The provided credentials is not correct.',
             ]);
-            // Redirect back to the login page
-            // return redirect('/login');
+
         }
     }
 

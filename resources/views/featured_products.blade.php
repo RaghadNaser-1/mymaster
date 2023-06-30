@@ -1,3 +1,7 @@
+{{-- @extends('index') --}}
+@extends('layouts.master')
+
+@section('products')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -485,3 +489,4 @@ $(document).ready(function(){
 </div>
 </body>
 </html>
+@endsection
