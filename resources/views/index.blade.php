@@ -8,6 +8,21 @@
         right: 20px;
         z-index: 9999;
     }
+    .featured-book-card {
+    height: 500px; /* Set the desired height for the card */
+}
+
+.featured-book-image {
+    height: 380px; /* Set the desired height for the book image */
+    object-fit: cover;
+}
+
+@media (max-width: 767px) {
+    .featured-book-card {
+        height: auto; /* Reset the height for smaller screens */
+    }
+}
+
 </style>
         <!-- Masthead-->
         @if(session('welcome_message'))
@@ -18,20 +33,33 @@
 @endif
 
 
-        <header class="masthead">
-            <div class="container px-4 px-lg-5 h-100">
-                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-                    <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Discover a World of Knowledge at Your Fingertips</h1>
-                        <hr class="divider" />
+<header class="masthead">
+    <div class="container px-4 px-lg-5 h-100">
+        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+            <div class="col-lg-8">
+                <h1 class="text-white font-weight-bold mb-4">Discover a World of Knowledge at Your Fingertips</h1>
+                <hr class="divider" />
+                <p class="text-white-75 mb-5">Explore our vast collection of books, textbooks, and resources, available for borrowing and learning. Unlock the doors to endless learning possibilities.</p>
+                {{-- <a class="btn btn-primary btn-xl" href="#about">Find Out More</a> --}}
+                <form class="form-inline" action="{{ route('books.index') }}" method="GET">
+                    <div class="input-group">
+                        <input class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search" name="search">
+                        <select class="form-select form-select-lg" name="category">
+                            <option value="">All Categories</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        <button class="btn btn-light" type="submit">Search</button>
                     </div>
-                    <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">Explore our vast collection of books, textbooks, and resources, available for borrowing and learning. Unlock the doors to endless learning possibilities.</p>
-                        <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
-                    </div>
-                </div>
+                </form>
             </div>
-        </header>
+
+        </div>
+    </div>
+</header>
+
+
         <!-- About-->
         <section class="page-section bg-primary" id="about">
             <div class="container px-4 px-lg-5">
@@ -46,63 +74,73 @@
             </div>
         </section>
 
-        <section class="page-section" id="services">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h2 class="mt-0">Our Services</h2>
-                        <hr class="divider" />
-                        <p class="mb-4">Discover the range of services we offer to enhance your learning experience:</p>
-                        <ul class="list-unstyled">
-                            <li>Book borrowing and renewal</li>
-                            <li>Online book reservations</li>
-                            <li>Digital resources and databases</li>
-                            <li>Research assistance</li>
-                            <!-- Add more services as needed -->
-                        </ul>
-                        <a class="btn btn-primary btn-xl" href="#contact">Contact Us</a>
-                    </div>
+        <!-- Our Services -->
+<section class="page-section" id="services">
+    <div class="container px-4 px-lg-5">
+        <div class="text-center">
+            <h2 class="section-heading">Our Services</h2>
+            <hr class="divider" />
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <i class="fas fa-book fa-4x mb-4"></i>
+                    {{-- <i class="fa-light fa-books"></i> --}}
+                    <h3 class="mb-3">Vast Book Collection</h3>
+                    <p class="text-muted">Explore our extensive collection of books, covering various genres, subjects, and disciplines.</p>
                 </div>
             </div>
-        </section>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <i class="fas fa-search fa-4x mb-4"></i>
+                    <h3 class="mb-3">Advanced Search</h3>
+                    <p class="text-muted">Efficiently find the books you need using our powerful search functionality and filtering options.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <i class="fas fa-clock fa-4x mb-4"></i>
+                    <h3 class="mb-3">Extended Borrowing</h3>
+                    <p class="text-muted">Enjoy longer borrowing periods, allowing you to delve deeper into your chosen topics without time constraints.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        <section class="page-section bg-light" id="events">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h2 class="mt-0">Upcoming Events</h2>
-                        <hr class="divider" />
-                        <p class="mb-4">Stay updated with our upcoming events and workshops:</p>
-                        <ul class="list-unstyled">
-                            <li>Author talks and book signings</li>
-                            <li>Reading clubs and discussion groups</li>
-                            <li>Workshops and seminars</li>
-                            <!-- Add more events as needed -->
-                        </ul>
-                        <a class="btn btn-primary btn-xl" href="#newsletter">Subscribe to Newsletter</a>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="page-section" id="resources">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h2 class="mt-0">Digital Resources</h2>
-                        <hr class="divider" />
-                        <p class="mb-4">Access a wealth of digital resources and databases:</p>
-                        <ul class="list-unstyled">
-                            <li>E-books and e-journals</li>
-                            <li>Research databases</li>
-                            <li>Online learning platforms</li>
-                            <!-- Add more resources as needed -->
-                        </ul>
-                        <a class="btn btn-primary btn-xl" href="#catalog">Explore Catalog</a>
+        <!-- Upcoming Events -->
+<section class="page-section bg-light" id="events">
+    <div class="container px-4 px-lg-5">
+        <div class="text-center">
+            <h2 class="section-heading">Upcoming Events</h2>
+            <hr class="divider" />
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <img src="https://www.deonmeyer.com/images/sign.jpg" class="card-img-top" alt="Event 1" height="200">
+                    <div class="card-body">
+                        <h5 class="card-title">Author Talk and Book Signing</h5>
+                        <p class="card-text">Meet acclaimed author John Doe as he discusses his new novel and shares insights into his writing process. Get your copy signed and engage in a Q&A session with the author.</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <img src="https://www.gosnells.wa.gov.au/sites/default/files/styles/banner/public/seamless/book_club_3.jpg?itok=6yr9guk9" class="card-img-top" alt="Event 2" height="200">
+                    <div class="card-body">
+                        <h5 class="card-title">Book Club Discussion</h5>
+                        <p class="card-text">Join us for an engaging book club discussion on the latest bestseller. Share your thoughts, exchange ideas, and connect with fellow book enthusiasts.</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
         <section class="page-section" id="featured-books">
             <div class="container px-4 px-lg-5">
@@ -110,40 +148,52 @@
                     <div class="col-lg-8 text-center">
                         <h2 class="mt-0">Featured Books</h2>
                         <hr class="divider" />
-                        <p class="mb-4">Check out some of our handpicked featured books:</p>
+                        <p class="mb-4">Check out some of our featured books.</p>
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="path/to/book1.jpg" class="card-img-top" alt="Book 1">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Book 1</h5>
-                                        <p class="card-text">Short description or summary of the book.</p>
-                                        <a href="#" class="btn btn-primary">Details</a>
+                            <!-- Generate book cards dynamically -->
+                            @foreach($featuredBooks as $book)
+                                <div class="col-md-4 mb-4">
+                                    <div class="card featured-book-card">
+                                        <img src="{{ $book->image }}" class="card-img-top featured-book-image" alt="{{ $book->title }}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $book->title }}</h5>
+                                            <p class="card-text">{{ $book->author }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="path/to/book2.jpg" class="card-img-top" alt="Book 2">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Book 2</h5>
-                                        <p class="card-text">Short description or summary of the book.</p>
-                                        <a href="#" class="btn btn-primary">Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="path/to/book3.jpg" class="card-img-top" alt="Book 3">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Book 3</h5>
-                                        <p class="card-text">Short description or summary of the book.</p>
-                                        <a href="#" class="btn btn-primary">Details</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <a class="btn btn-primary btn-xl" href="{{ route('books.index') }}">View All Books</a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="page-section bg-light" id="contact">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="mt-0">Contact Us</h2>
+                        <hr class="divider" />
+                        <p class="mb-4">Have any questions or inquiries? Feel free to get in touch with us.</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <i class="fas fa-map-marker-alt fa-2x"></i>
+                                <p>123 Library Street, City, Country</p>
+                            </div>
+                            <div class="col-md-6">
+                                <i class="fas fa-envelope fa-2x"></i>
+                                <p><a href="mailto:info@example.com">info@example.com</a></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <i class="fas fa-phone fa-2x"></i>
+                                <p>+123 456 789</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
