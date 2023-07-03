@@ -23,7 +23,8 @@
         <!-- SimpleLightbox plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        {{-- <link href="css/styles.css" rel="stylesheet" /> --}}
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     </head>
     <body id="page-top">
@@ -51,6 +52,9 @@
                                 <a class="nav-link" href="{{ route('login') }}">Login</a>
                             </li>
                         @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('profile') }}">Profile</a>
+                        </li>
                             <li class="nav-item">
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf

@@ -28,24 +28,25 @@
 
                 <div class="row row-cols-4 g-4">
                     @foreach ($books as $book)
-                        <div class="col mb-4">
-                            <div class="card book-card">
-                                <div class="book-image">
-                                    @if ($book->image)
-                                        <img src="{{ $book->image }}" class="card-img-top" alt="{{ $book->title }}">
-                                    @else
-                                        <div class="card-img-top placeholder-image"></div>
-                                    @endif
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $book->title }}</h5>
-                                    <p class="card-text">Author: {{ $book->author }}</p>
-                                    <p class="card-text">Category: {{ $book->category->name }}</p>
-                                    <p class="card-text">{{ $book->description }}</p>
-                                </div>
+                    <div class="col mb-4">
+                        <div class="card book-card">
+                            <div class="book-image">
+                                @if ($book->image)
+                                    <a href="{{ route('books.show', $book) }}"><img src="{{ $book->image }}" class="card-img-top" alt="{{ $book->title }}"></a>
+                                @else
+                                    <div class="card-img-top placeholder-image"></div>
+                                @endif
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $book->title }}</h5>
+                                <p class="card-text">Author: {{ $book->author }}</p>
+                                <p class="card-text">Category: {{ $book->category->name }}</p>
+                                <p class="card-text">{{ $book->description }}</p>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+                @endforeach
+
                 </div>
             </div>
         </div>
@@ -60,7 +61,7 @@
             border: none;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             transition: box-shadow 0.3s;
-            height: 100%;
+            height: 600px;
         }
 
         .book-card:hover {
@@ -70,7 +71,7 @@
         .book-image {
             position: relative;
             overflow: hidden;
-            height: 500px;
+            height: 400px;
         }
 
         .book-image .card-img-top {

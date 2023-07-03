@@ -35,5 +35,10 @@ public function index(Request $request)
 
     return view('books.index', compact('books', 'categories'));
 }
+public function show(Book $book)
+{
+    return view('books.show', compact('book'));
+}
+
 
 }

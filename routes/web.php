@@ -5,6 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthorController;
+
 
 
 /*
@@ -51,5 +54,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/users', [DashboardController::class, 'users'])->name('users');
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
+Route::get('/books/{book}', [BookController::class,'show'])->name('books.show');
+
+Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
+Route::get('/author/{id}', [AuthorController::class,'show'])->name('author.show');
 
 

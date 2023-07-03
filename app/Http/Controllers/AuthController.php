@@ -51,7 +51,7 @@ class AuthController extends Controller
 
             if ($user->role_id == 2) {
                 // Redirect to '/index' for role ID 2
-                return redirect('/index');
+                return redirect('/');
             } elseif ($user->role_id == 1) {
                 // Redirect to '/dashboard' for role ID 1
                 return redirect('/dashboard');
@@ -78,7 +78,7 @@ class AuthController extends Controller
     Auth::logout();
 
     // Redirect the user to the desired page after logout
-    return redirect('/index')->with('success', 'You have been logged out successfully.');
+    return redirect('/')->with('success', 'You have been logged out successfully.');
 }
 
 

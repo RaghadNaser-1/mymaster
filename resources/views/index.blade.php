@@ -157,8 +157,14 @@
                                         <img src="{{ $book->image }}" class="card-img-top featured-book-image" alt="{{ $book->title }}">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $book->title }}</h5>
-                                            <p class="card-text">{{ $book->author }}</p>
-                                        </div>
+                                            <p class="card-text">
+                                                @if ($book->authors->isNotEmpty())
+                                                <a href="{{ route('author.show', $book->authors->first()->id) }}">{{ $book->authors->first()->name }}</a>
+                                            @else
+                                                No Author
+                                            @endif
+                                                                                        </p>
+                                                                                    </div>
                                     </div>
                                 </div>
                             @endforeach
