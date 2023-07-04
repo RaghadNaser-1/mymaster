@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+<div class="row g-0" style="background-color: #f4623a; height:70px"></div>
 
 <div class="container mt-4">
     <h1 class="author-name">{{ $author->name }}</h1>

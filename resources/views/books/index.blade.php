@@ -28,26 +28,35 @@
 
                 <div class="row row-cols-4 g-4">
                     @foreach ($books as $book)
-                    <div class="col mb-4">
-                        <div class="card book-card">
-                            <div class="book-image">
-                                @if ($book->image)
-                                    <a href="{{ route('books.show', $book) }}"><img src="{{ $book->image }}" class="card-img-top" alt="{{ $book->title }}"></a>
-                                @else
-                                    <div class="card-img-top placeholder-image"></div>
-                                @endif
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $book->title }}</h5>
-                                <p class="card-text">Author: {{ $book->author }}</p>
-                                <p class="card-text">Category: {{ $book->category->name }}</p>
-                                <p class="card-text">{{ $book->description }}</p>
+                        <div class="col mb-4">
+                            <div class="card book-card">
+                                <div class="book-image">
+                                    @if ($book->image)
+                                        <a href="{{ route('books.show', $book) }}"><img src="{{ $book->image }}" class="card-img-top" alt="{{ $book->title }}"></a>
+                                    @else
+                                        <div class="card-img-top placeholder-image"></div>
+                                    @endif
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $book->title }}</h5>
+                                    <p class="card-text">Author: {{ $book->author }}</p>
+                                    <p class="card-text">Category: {{ $book->category->name }}</p>
+                                    <p class="card-text">{{ $book->description }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-
+                    @endforeach
                 </div>
+
+                <!-- Pagination links -->
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <ul class="pagination justify-content-center">
+                            {{ $books->links() }}
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -97,6 +106,10 @@
 
         .card-text {
             margin-bottom: 10px;
+        }
+
+        .pagination {
+            margin-top: 20px;
         }
     </style>
 @endsection

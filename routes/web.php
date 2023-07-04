@@ -55,6 +55,7 @@ Route::get('/users', [DashboardController::class, 'users'])->name('users');
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{book}', [BookController::class,'show'])->name('books.show');
+Route::post('/books/{book}/borrow', [BookController::class,'borrow'])->name('books.borrow');
 
 Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
 Route::get('/author/{id}', [AuthorController::class,'show'])->name('author.show');

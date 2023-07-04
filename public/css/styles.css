@@ -10895,6 +10895,8 @@ hr.divider-light {
   }
   #mainNav .navbar-brand {
     color: rgba(255, 255, 255, 0.7);
+    /* color: #f4623a; */
+
   }
   #mainNav .navbar-brand:hover {
     color: #fff;
