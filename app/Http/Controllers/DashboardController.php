@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -27,4 +28,10 @@ class DashboardController extends Controller
     return view('dashboard.users', compact('users'));
 }
 
+public function books()
+{
+    $books = Book::all(); // Retrieve all users from the `users` table
+
+    return view('dashboard.books.index', compact('books'));
+}
 }

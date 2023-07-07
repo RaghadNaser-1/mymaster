@@ -52,10 +52,19 @@ Route::post('/clear-welcome-message', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/users', [DashboardController::class, 'users'])->name('users');
+Route::get('/bookstable', [DashboardController::class, 'books'])->name('bookstable');
+
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{book}', [BookController::class,'show'])->name('books.show');
 Route::post('/books/{book}/borrow', [BookController::class,'borrow'])->name('books.borrow');
+// Route::resource('books', BookController::class);
+Route::resource('dashboard.books', BookController::class);
+Route::delete('/dashboard/books/{book}', [BookController::class, 'destroy'])->name('dashboard.books.destroy');
+Route::get('/dashboard/books/{book}/edit', [BookController::class, 'edit'])->name('dashboard.books.edit');
+Route::put('/dashboard/books/{book}', [BookController::class, 'update'])->name('dashboard.books.update');
+
+// Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
 
 Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
 Route::get('/author/{id}', [AuthorController::class,'show'])->name('author.show');

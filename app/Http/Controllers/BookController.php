@@ -65,7 +65,77 @@ public function borrow(Book $book)
         return redirect()->back()->with('error', 'Book is currently not available for borrowing.');
     }
 }
+public function edit($id)
+    {
+        $book = Book::findOrFail($id);
+        $categories = Category::all();
+        return view('dashboard.books.edit', compact('book', 'categories'));
+    }
+
+public function update(Request $request, Book $book)
+{
+    $request->validate([
+        'title' => 'required',
+        'author' => 'required',
+        'description' => 'required',
+        'category' => 'required',
+        'image' => 'required',
+        'featured' => 'required',
+        'quantity' => 'required|integer|min:0',
+    ]);
+
+    $book->title = $request->title;
+    $book->author = $request->author;
+    $book->description = $request->description;
+    $book->category_id = $request->category;
+    $book->image = $request->image;
+    $book->featured = $request->featured;
+    $book->quantity = $request->quantity;
+    $book->save();
+
+    // $books = Book::all(); // Retrieve all users from the `users` table
+
+    return redirect()->route('bookstable')->with('success', 'Book updated successfully.');
+    // return view('dashboard.books', compact('books'));
+
+}
+public function destroy( $id)
+    {
+        $book = Book::findOrFail($id);
+
+        $book->delete();
+        // return redirect()->route('bookstable')->with('success', 'Book deleted successfully.');
+        return back()->with('success', 'Book deleted successfully.');
 
 
+    }
+    public function create()
+    {
+        $categories = Category::all();
+        return view('dashboard.books.create', compact('categories'));
+    }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'description' => 'required',
+            'category' => 'required',
+            'image' => 'required',
+            'featured' => 'required',
+            'quantity' => 'required|integer|min:0',
+        ]);
 
+        $book = new Book();
+        $book->title = $request->title;
+        $book->author = $request->author;
+        $book->description = $request->description;
+        $book->category_id = $request->category;
+        $book->image = $request->image;
+        $book->featured = $request->featured;
+        $book->quantity = $request->quantity;
+        $book->save();
+
+        return redirect()->route('bookstable')->with('success', 'Book added successfully.');
+    }
 }

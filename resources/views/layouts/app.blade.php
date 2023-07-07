@@ -13,13 +13,13 @@
     <title>Admin Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </head>
@@ -64,7 +64,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{ route('bookstable') }}">
                     <i class="fas fa-fw fa-book-open"></i>
                     <span>Books</span></a>
             </li>
@@ -73,6 +73,12 @@
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Authors</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Categories</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -161,7 +167,7 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -234,21 +240,25 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="admin/vendor/jquery/jquery.min.js"></script>
+    {{-- <script src="admin/vendor/jquery/jquery.min.js"></script>
     <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="admin/js/sb-admin-2.min.js"></script>
+    <script src="admin/js/sb-admin-2.min.js"></script> --}}
+    <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="admin/vendor/chart.js/Chart.min.js"></script>
+    {{-- <script src="admin/vendor/chart.js/Chart.min.js"></script> --}}
 
     <!-- Page level custom scripts -->
-    <script src="admin/js/demo/chart-area-demo.js"></script>
-    <script src="admin/js/demo/chart-pie-demo.js"></script>
+    {{-- <script src="admin/js/demo/chart-area-demo.js"></script> --}}
+    {{-- <script src="admin/js/demo/chart-pie-demo.js"></script> --}}
 
 </body>
 
