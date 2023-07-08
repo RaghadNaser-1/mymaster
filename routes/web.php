@@ -25,6 +25,12 @@ use App\Http\Controllers\AuthorController;
 //     return view('index');
 // });
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/repository', [HomeController::class, 'repository'])->name('repository');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+
+Route::get('/repository/search', [HomeController::class, 'search'])->name('repository.search');
+Route::post('/repository/store', [HomeController::class, 'store'])->name('repository.store');
+
 
 // Route::get('/index', function () {
 //     return view('index');

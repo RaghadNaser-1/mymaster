@@ -10,12 +10,7 @@ use Carbon\Carbon;
 
 class BookController extends Controller
 {
-//     public function index()
-// {
-//     $books = Book::all(); // Retrieve all books from the database
 
-//     return view('books.index', compact('books'));
-// }
 
 public function index(Request $request)
 {

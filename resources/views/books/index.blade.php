@@ -14,7 +14,7 @@
                         <div class="mb-4">
                             <form class="form-inline" action="{{ route('books.index') }}" method="GET">
                                 <div class="input-group">
-                                    <input class="form-control" type="search" placeholder="Search books" aria-label="Search" name="search">
+                                    <input class="form-control" type="search" placeholder="Search by book title, author name" aria-label="Search" name="search">
                                     <button class="btn btn-primary" type="submit">Search</button>
                                 </div>
                             </form>
@@ -22,11 +22,12 @@
                         <div>
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <a href="{{ route('books.index') }}">All Categories</a>
+                                    <a href="{{ route('books.index') }}" class="category-link">All Categories</a>
                                 </li>
+
                                 @foreach($categories as $category)
                                     <li class="list-group-item">
-                                        <a href="{{ route('books.index', ['category' => $category->id]) }}">{{ $category->name }}</a>
+                                        <a href="{{ route('books.index', ['category' => $category->id]) }}" class="category-link">{{ $category->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -141,5 +142,15 @@
         .pagination {
             margin-top: 20px;
         }
+        .category-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.category-link:hover {
+    text-decoration: underline;
+}
+
     </style>
 @endsection

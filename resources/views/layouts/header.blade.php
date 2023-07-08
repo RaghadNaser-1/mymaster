@@ -23,6 +23,13 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <!-- CSS -->
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> --}}
+
+<!-- JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -38,11 +45,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('index') }}">Home</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="#services">Services</a>
-                        </li> --}}
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('books.index') }}">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('repository') }}">Digital Repository</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('about') }}">About Us</a>
                         </li>
                         @guest
                             <li class="nav-item">

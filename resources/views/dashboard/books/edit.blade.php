@@ -61,6 +61,6 @@
     </div>
 
     <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary">Update Book</button>
+    <button type="submit" class="btn btn-primary mb-4">Update Book</button>
   </form>
 @endsection
