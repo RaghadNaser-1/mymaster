@@ -52,9 +52,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('repository') }}">Digital Repository</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('about') }}">About Us</a>
-                        </li>
+                        </li> --}}
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">Login</a>

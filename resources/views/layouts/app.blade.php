@@ -70,7 +70,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{ route('authors.index') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Authors</span></a>
             </li>

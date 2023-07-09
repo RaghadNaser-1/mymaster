@@ -12,7 +12,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        $authors = Author::all();
+        return view('authors.index', compact('authors'));
     }
 
     /**
@@ -20,7 +21,8 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('authors.create');
+
     }
 
     /**
@@ -28,7 +30,14 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'bio' => 'nullable',
+        ]);
+
+        Author::create($validatedData);
+
+        return redirect()->route('authors.index')->with('success', 'Author created successfully.');
     }
 
     /**
@@ -49,24 +58,33 @@ class AuthorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Author $author)
     {
-        //
+        return view('authors.edit', compact('author'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Author $author)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'bio' => 'nullable',
+        ]);
+
+        $author->update($validatedData);
+
+        return redirect()->route('authors.index')->with('success', 'Author updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Author $author)
     {
-        //
+        $author->delete();
+
+        return redirect()->route('authors.index')->with('success', 'Author deleted successfully.');
     }
 }
