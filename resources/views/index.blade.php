@@ -110,36 +110,82 @@
 
 
         <!-- Upcoming Events -->
-<section class="page-section bg-light" id="events">
-    <div class="container px-4 px-lg-5">
-        <div class="text-center">
-            <h2 class="section-heading">Upcoming Events</h2>
-            <hr class="divider" />
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <img src="https://www.deonmeyer.com/images/sign.jpg" class="card-img-top" alt="Event 1" height="200">
-                    <div class="card-body">
-                        <h5 class="card-title">Author Talk and Book Signing</h5>
-                        <p class="card-text">Meet acclaimed author John Doe as he discusses his new novel and shares insights into his writing process. Get your copy signed and engage in a Q&A session with the author.</p>
-                        <a href="#" class="btn btn-primary">Learn More</a>
+        <section class="page-section bg-light" id="events">
+            <div class="container px-4 px-lg-5">
+                <div class="text-center">
+                    <h2 class="section-heading">Upcoming Events</h2>
+                    <hr class="divider" />
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <img src="https://www.deonmeyer.com/images/sign.jpg" class="card-img-top" alt="Event 1" height="200">
+                            <div class="card-body">
+                                <h5 class="card-title">Author Talk and Book Signing</h5>
+                                <p class="card-text">Meet acclaimed author John Doe as he discusses his new novel and shares insights into his writing process. Get your copy signed and engage in a Q&A session with the author.</p>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal1">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <img src="https://www.gosnells.wa.gov.au/sites/default/files/styles/banner/public/seamless/book_club_3.jpg?itok=6yr9guk9" class="card-img-top" alt="Event 2" height="200">
+                            <div class="card-body">
+                                <h5 class="card-title">Book Club Discussion</h5>
+                                <p class="card-text">Join us for an engaging book club discussion on the latest bestseller. Share your thoughts, exchange ideas, and connect with fellow book enthusiasts.</p>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal2">Learn More</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <img src="https://www.gosnells.wa.gov.au/sites/default/files/styles/banner/public/seamless/book_club_3.jpg?itok=6yr9guk9" class="card-img-top" alt="Event 2" height="200">
-                    <div class="card-body">
-                        <h5 class="card-title">Book Club Discussion</h5>
-                        <p class="card-text">Join us for an engaging book club discussion on the latest bestseller. Share your thoughts, exchange ideas, and connect with fellow book enthusiasts.</p>
-                        <a href="#" class="btn btn-primary">Learn More</a>
+
+            <!-- Event Modals -->
+            <div class="modal fade" id="eventModal1" tabindex="-1" aria-labelledby="eventModal1Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="eventModal1Label">Author Talk and Book Signing</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Date: August 3, 2023</li>
+                                <li class="list-group-item">Time: 7:00 PM - 9:00 PM</li>
+                                <li class="list-group-item">Location: Main Library Auditorium</li>
+
+                              </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+
+            <div class="modal fade" id="eventModal2" tabindex="-1" aria-labelledby="eventModal2Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="eventModal2Label">Book Club Discussion</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Date: July 15, 2023</li>
+                                <li class="list-group-item">Time: 6:00 PM - 8:00 PM</li>
+                                <li class="list-group-item">Location: Library Meeting Room</li>
+
+                              </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
 
         <section class="page-section" id="featured-books">

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row g-0" style="background-color: #f4623a; height: 70px;"></div>
+    <div class="row g-0" style="background-color: #f4623a; height: 70px;"></div>
 
     <div class="container-fluid px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -10,27 +10,42 @@
                 <hr class="divider" />
 
                 <div class="row">
-                    <div class="col-md-8 offset-md-2">
+                    <div class="col-md-6">
                         <div class="mission">
                             <h2>Our Mission</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec metus ac ligula mollis pulvinar. Aliquam aliquam, lorem eu facilisis tincidunt, ex lectus blandit mi, vitae vulputate purus enim eu sem.</p>
-                        </div>
-
-                        <div class="history">
-                            <h2>Our History</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec metus ac ligula mollis pulvinar. Aliquam aliquam, lorem eu facilisis tincidunt, ex lectus blandit mi, vitae vulputate purus enim eu sem.</p>
+                            <p>The mission of our university library is to create a dynamic learning environment that supports the academic pursuits of our community. We provide resources, services, and technologies to facilitate access to knowledge and promote information literacy. Our goal is to inspire a love for learning, foster intellectual curiosity, and encourage collaboration and exploration. We stay current with emerging trends in academia and continually expand our collection to enhance research and learning experiences. Through our dedicated staff and extensive resources, we aim to empower individuals, contribute to academic excellence, and promote lifelong learning within our university community. Join us on a journey of knowledge exploration and unlock your full potential at our university library.
+                            </p>
                         </div>
 
                         <div class="staff">
                             <h2>Our Staff</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec metus ac ligula mollis pulvinar. Aliquam aliquam, lorem eu facilisis tincidunt, ex lectus blandit mi, vitae vulputate purus enim eu sem.</p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="staff-member">
+                                        <h4>John Doe</h4>
+                                        <p>Librarian</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="staff-member">
+                                        <h4>Jane Smith</h4>
+                                        <p>Assistant Librarian</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="staff-member">
+                                        <h4>Michael Johnson</h4>
+                                        <p>Archivist</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="contact">
-                            <h2>Contact Details</h2>
-                            <p>Address: 123 Library Street, City, Country</p>
-                            <p>Email: info@example.com</p>
-                            <p>Phone: +1 123 456 7890</p>
+                    <div class="col-md-6">
+                        <div class="history">
+                            <h2>Our History</h2>
+                            <p>Established in 2000, our university library has been an integral part of the academic community for several decades. Since its inception, the library has grown and evolved, adapting to the changing needs of students, faculty, and researchers. Throughout the years, we have continuously expanded our collection, embracing new technologies and resources to enhance the learning experience. Our commitment to providing exceptional services and fostering a supportive environment has allowed us to establish a rich history of empowering knowledge, research, and intellectual growth.</p>
                         </div>
 
                         <div class="opening-hours">
@@ -38,11 +53,6 @@
                             <p>Monday - Friday: 9:00 AM to 6:00 PM</p>
                             <p>Saturday: 9:00 AM to 1:00 PM</p>
                             <p>Sunday: Closed</p>
-                        </div>
-
-                        <div class="location">
-                            <h2>Location</h2>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27063.7074088578!2d35.89014530181883!3d32.0161043875039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151c9f765ba05b27%3A0x5a5ba049c504b635!2z2KfZhNis2KfZhdi52Kkg2KfZhNij2LHYr9mG2YrYqQ!5e0!3m2!1sar!2sjo!4v1688847834364!5m2!1sar!2sjo" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>
@@ -52,11 +62,11 @@
 
     <style>
         /* Custom styling for the About Us page */
-        .divider {
+        /* .divider {
             border-top: 2px solid #f8f9fa;
             margin-top: 2rem;
             margin-bottom: 2rem;
-        }
+        } */
 
         .mission,
         .history,
@@ -77,8 +87,36 @@
             line-height: 1.6;
         }
 
-        .location iframe {
-            height: 300px;
+        .staff {
+            margin-bottom: 2rem;
+        }
+
+        .staff h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .staff .row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .staff-member {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .staff-member h4 {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .staff-member p {
+            margin-top: 5px;
+            font-size: 14px;
         }
     </style>
 @endsection

@@ -26,7 +26,7 @@ public function index(Request $request)
         ->when($category, function ($query, $category) {
             $query->where('category_id', $category);
         })
-        ->paginate(8);
+        ->paginate(9);
 
     $categories = Category::all();
 
