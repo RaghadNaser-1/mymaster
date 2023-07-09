@@ -57,7 +57,7 @@ Route::post('/clear-welcome-message', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/users', [DashboardController::class, 'users'])->name('users');
+Route::get('/users', [DashboardController::class, 'users'])->name('userstable');
 Route::get('/bookstable', [DashboardController::class, 'books'])->name('bookstable');
 
 
@@ -75,4 +75,10 @@ Route::put('/dashboard/books/{book}', [BookController::class, 'update'])->name('
 Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
 Route::get('/author/{id}', [AuthorController::class,'show'])->name('author.show');
 
+
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 

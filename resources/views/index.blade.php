@@ -50,7 +50,7 @@
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
-                        <button class="btn btn-light" type="submit">Search</button>
+                        <button class="btn btn-primary" type="submit">Search</button>
                     </div>
                 </form>
             </div>
@@ -75,7 +75,7 @@
         </section>
 
         <!-- Our Services -->
-<section class="page-section" id="services">
+<section class="page-section bg-light" id="services">
     <div class="container px-4 px-lg-5">
         <div class="text-center">
             <h2 class="section-heading">Our Services</h2>
@@ -108,7 +108,39 @@
     </div>
 </section>
 
+<section class="page-section" id="featured-books">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="mt-0">Featured Books</h2>
+                <hr class="divider" />
+                <p class="mb-4">Check out some of our featured books.</p>
+                <div class="row">
+                    <!-- Generate book cards dynamically -->
+                    @foreach($featuredBooks as $book)
+                        <div class="col-md-4 mb-4">
+                            <div class="card featured-book-card">
+                                <img src="{{ $book->image }}" class="card-img-top featured-book-image" alt="{{ $book->title }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $book->title }}</h5>
+                                    <p class="card-text">
+                                        @if ($book->authors->isNotEmpty())
+                                        <a href="{{ route('author.show', $book->authors->first()->id) }}">{{ $book->authors->first()->name }}</a>
+                                    @else
+                                        No Author
+                                    @endif
+                                                                                </p>
+                                                                            </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <a class="btn btn-primary btn-xl" href="{{ route('books.index') }}">View All Books</a>
 
+            </div>
+        </div>
+    </div>
+</section>
         <!-- Upcoming Events -->
         <section class="page-section bg-light" id="events">
             <div class="container px-4 px-lg-5">
@@ -146,7 +178,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="eventModal1Label">Author Talk and Book Signing</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                         </div>
                         <div class="modal-body">
                             <ul class="list-group list-group-flush">
@@ -168,7 +200,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="eventModal2Label">Book Club Discussion</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                         </div>
                         <div class="modal-body">
                             <ul class="list-group list-group-flush">
@@ -188,42 +220,10 @@
 
 
 
-        <section class="page-section" id="featured-books">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h2 class="mt-0">Featured Books</h2>
-                        <hr class="divider" />
-                        <p class="mb-4">Check out some of our featured books.</p>
-                        <div class="row">
-                            <!-- Generate book cards dynamically -->
-                            @foreach($featuredBooks as $book)
-                                <div class="col-md-4 mb-4">
-                                    <div class="card featured-book-card">
-                                        <img src="{{ $book->image }}" class="card-img-top featured-book-image" alt="{{ $book->title }}">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ $book->title }}</h5>
-                                            <p class="card-text">
-                                                @if ($book->authors->isNotEmpty())
-                                                <a href="{{ route('author.show', $book->authors->first()->id) }}">{{ $book->authors->first()->name }}</a>
-                                            @else
-                                                No Author
-                                            @endif
-                                                                                        </p>
-                                                                                    </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <a class="btn btn-primary btn-xl" href="{{ route('books.index') }}">View All Books</a>
-
-                    </div>
-                </div>
-            </div>
-        </section>
 
 
-        <section class="page-section bg-light" id="contact">
+
+        <section class="page-section " id="contact">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center">

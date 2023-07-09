@@ -3,8 +3,12 @@
 @section('content')
   <!-- Page Heading -->
   <h1 class="h3 mb-2 text-gray-800">Users</h1>
-  <p class="mb-4">Manage users in the system.</p>
+  <div style="display: flex; justify-content:space-between; align-items:center">
+    <p class="mb-4">Manage users in the system.</p>
 
+    <!-- Add New Book Button -->
+    <a href="{{ route('users.create') }}" class="btn btn-primary mb-4">Add New User</a>
+</div>
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">
@@ -36,7 +40,14 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td> Edit Delete</td>
+                            <td>
+                                <a href="{{ route('users.edit', $user) }}" class="btn btn-primary" style="width: 75px;">Edit</a>
+                                <form action="{{ route('users.destroy', $user) }}" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')" style="width: 75px;">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
