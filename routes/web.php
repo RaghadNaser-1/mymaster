@@ -7,6 +7,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\ReviewController;
 
 
 
@@ -89,3 +90,5 @@ Route::post('/authors', [AuthorController::class, 'store'])->name('authors.store
 Route::get('/authors/{author}/edit', [AuthorController::class, 'edit'])->name('authors.edit');
 Route::put('/authors/{author}', [AuthorController::class, 'update'])->name('authors.update');
 Route::delete('/authors/{author}', [AuthorController::class, 'destroy'])->name('authors.destroy');
+
+Route::post('/books/{book}/reviews', [ReviewController::class, 'store'])->name('reviews.store');

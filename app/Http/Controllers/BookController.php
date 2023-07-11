@@ -32,10 +32,17 @@ public function index(Request $request)
 
     return view('books.index', compact('books', 'categories'));
 }
-public function show(Book $book)
+// public function show(Book $book)
+// {
+//     return view('books.show', compact('book'));
+// }
+
+public function show($id)
 {
+    $book = Book::with('category', 'reviews.user')->findOrFail($id);
     return view('books.show', compact('book'));
 }
+
 public function borrow(Book $book)
 {
     // Check if the book quantity is greater than 0

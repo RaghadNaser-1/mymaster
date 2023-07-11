@@ -10,7 +10,7 @@
                 <hr class="divider" />
 
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="mb-4">
                             <form class="form-inline" action="{{ route('books.index') }}" method="GET">
                                 <div class="input-group">
@@ -33,7 +33,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <div class="row row-cols-3 g-4">
                             @foreach ($books as $book)
                                 <div class="col mb-4">
@@ -149,7 +149,7 @@
 }
 
 .category-link:hover {
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
     </style>
