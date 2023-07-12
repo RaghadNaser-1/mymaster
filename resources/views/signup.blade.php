@@ -23,6 +23,7 @@ height: 100%;
 }
 }
 </style>
+<div class="row g-0" style="background-color: #f4623a; height: 70px;"></div>
 
 <section class="vh-100">
 

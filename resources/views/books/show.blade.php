@@ -14,12 +14,13 @@
     </div>
 @endif
     <div class="container mt-4">
-        <div class="card mb-4">
-            <div class="row g-0">
+        <div class=" mb-4">
+            <div class="row g-4">
                 <div class="col-md-3">
                     <img src="{{ $book->image }}" class="card-img" alt="{{ $book->title }}" width="350" height="500">
                 </div>
-                <div class="col-md-8">
+                {{-- <div class="col-md-1"></div> --}}
+                <div class="card col-md-9">
                     <div class="card-body">
                         <h5 class="card-title">{{ $book->title }}</h5>
                         <p class="card-text">Author: {{ $book->author }}</p>
@@ -81,7 +82,7 @@
             </div>
         </div>
     </div>
-    
+
 <style>
     .rating {
     color: #f4623a;
@@ -91,8 +92,25 @@
     color: #f4623a;
 }
 
-</style>
+.card-img{
+    border-radius: 5px;
+}
 
+    .review {
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .review h5 {
+        margin-bottom: 5px;
+    }
+
+    .review p {
+        margin-bottom: 10px;
+    }
+</style>
     <!-- Borrow Modal -->
     <div class="modal fade" id="borrowModal" tabindex="-1" role="dialog" aria-labelledby="borrowModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

@@ -65,7 +65,7 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('bookstable') }}">
-                    <i class="fas fa-fw fa-book-open"></i>
+                    <i class="fas fa-fw fa-book"></i>
                     <span>Books</span></a>
             </li>
 
@@ -77,14 +77,26 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('categories.index') }}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-tags"></i>
                     <span>Categories</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-book"></i>
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-handshake"></i>
                     <span>Borrows</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-star"></i>
+                    <span>Reviews</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Researches</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -114,7 +126,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    {{-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -125,7 +137,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
