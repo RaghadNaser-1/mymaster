@@ -81,17 +81,17 @@
             </div>
         </div>
     </div>
-<!-- Book details -->
-{{-- <style>
+    
+<style>
     .rating {
-    color: yellow;
+    color: #f4623a;
 }
 
 .rating .filled {
-    color: yellow;
+    color: #f4623a;
 }
 
-</style> --}}
+</style>
 
     <!-- Borrow Modal -->
     <div class="modal fade" id="borrowModal" tabindex="-1" role="dialog" aria-labelledby="borrowModalLabel" aria-hidden="true">
