@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="row g-0" style="background-color: #f4623a; height: 70px;"></div>
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
     <div class="container-fluid px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">

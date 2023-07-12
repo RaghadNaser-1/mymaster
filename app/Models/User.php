@@ -4,10 +4,13 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Borrow;
+use App\Models\Repository;
+
 
 class User extends Authenticatable
 {
@@ -46,5 +49,10 @@ class User extends Authenticatable
     public function borrows()
     {
         return $this->hasMany(Borrow::class);
+    }
+
+    public function repositories(): HasMany
+    {
+        return $this->hasMany(Repository::class);
     }
 }

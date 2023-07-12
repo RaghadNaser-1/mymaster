@@ -21,16 +21,20 @@ class HomeController extends Controller
     }
 
     public function repository(Request $request)
-    {
-        $searchQuery = $request->input('search');
+{
+    $searchQuery = $request->input('search');
 
     // Perform the search query and retrieve the search results
-    $searchResults = Repository::where('title', 'like', '%'.$searchQuery.'%')
-        ->orWhere('author', 'like', '%'.$searchQuery.'%')
+    $searchResults = Repository::where('accepted', true)
+        ->where(function ($query) use ($searchQuery) {
+            $query->where('title', 'like', '%'.$searchQuery.'%')
+                ->orWhere('author', 'like', '%'.$searchQuery.'%');
+        })
         ->get();
 
-        return view('digital', compact('searchResults'));
-    }
+    return view('digital', compact('searchResults'));
+}
+
     public function store(Request $request)
 {
     // Validate the form data
@@ -45,11 +49,15 @@ class HomeController extends Controller
     $research->title = $validatedData['title'];
     $research->author = $validatedData['author'];
     $research->file_path = $validatedData['file_path'];
+    $research->user_id = auth()->id(); // Assumes you are using the default Laravel authentication
+
     $research->save();
 
     // Optionally, you can redirect the user to a success page or return a response
 
-    return redirect()->back()->with('success', 'Research added successfully!');
+    // return redirect()->back()->with('success', 'Research added successfully!');
+    return redirect()->back()->with('success', 'Research submitted successfully. It will appear in the list once it is approved by the admin.');
+
 }
 public function about()
     {
