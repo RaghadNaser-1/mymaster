@@ -94,7 +94,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('repositories.index') }}">
                     <i class="fas fa-fw fa-search"></i>
                     <span>Researches</span></a>
             </li>

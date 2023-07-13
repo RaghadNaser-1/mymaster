@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RepositoryController;
 
 
 
@@ -108,3 +109,11 @@ Route::get('/reviews/create', [ReviewController::class, 'create'])->name('review
 Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
 Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+
+Route::get('/repositories', [RepositoryController::class, 'index'])->name('repositories.index');
+Route::get('/repositories/create', [RepositoryController::class, 'create'])->name('repositories.create');
+Route::post('/repositories', [RepositoryController::class, 'store'])->name('repositories.store');
+// Route::get('/repositories/{repository}', [RepositoryController::class, 'show'])->name('repositories.show');
+Route::get('/repositories/{repository}/edit', [RepositoryController::class, 'edit'])->name('repositories.edit');
+Route::put('/repositories/{repository}', [RepositoryController::class, 'update'])->name('repositories.update');
+Route::delete('/repositories/{repository}', [RepositoryController::class, 'destroy'])->name('repositories.destroy');

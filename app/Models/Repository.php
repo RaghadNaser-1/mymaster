@@ -15,7 +15,9 @@ class Repository extends Model
         'title',
         'author',
         'file_path',
+        'accepted',
         'user_id',
+
     ];
     public function user(): BelongsTo
     {
