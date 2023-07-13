@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
+    public function index()
+    {
+        $reviews = Review::all();
+        return view('reviews.index', compact('reviews'));
+    }
+
     public function store(Request $request, Book $book)
 {
     $request->validate([
@@ -25,4 +31,20 @@ class ReviewController extends Controller
     return redirect()->back()->with('success', 'Review added successfully.');
 }
 
+public function edit(Review $review)
+{
+    return view('reviews.edit', compact('review'));
+}
+
+public function update(Request $request, Review $review)
+{
+    // Implement logic to update the review in the database
+}
+
+public function destroy(Review $review)
+{
+    $review->delete();
+
+    return redirect()->route('reviews.index')->with('success', 'review deleted successfully.');
+}
 }
