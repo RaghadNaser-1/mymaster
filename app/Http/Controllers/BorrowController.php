@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Borrow;
+use App\Models\Book;
+use App\Models\User;
+
+
 
 class BorrowController extends Controller
 {
@@ -11,54 +16,75 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        //
+        // Retrieve all borrows
+        $borrows = Borrow::all();
+
+        return view('borrows.index', compact('borrows'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $books = Book::where('quantity', '>', 0)->get(); // Fetch available books
+        $users = User::all(); // Fetch all users
+
+        return view('borrows.create', compact('books', 'users'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        //
+        // Validate the form data
+        $validatedData = $request->validate([
+            'book_id' => 'required',
+            'user_id' => 'required',
+            'borrowed_at' => 'required',
+            'estimated_end_time' => 'required',
+        ]);
+
+        // Create a new borrow record
+        $borrow = Borrow::create($validatedData);
+
+        // Redirect or return a response as needed
+        return redirect()->route('borrows.index')->with('success', 'Borrow record created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Borrow $borrow)
     {
-        //
+        // Retrieve the borrow record and related data
+
+        return view('borrows.show', compact('borrow'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Borrow $borrow)
     {
-        //
+        // Provide data for editing the borrow record (e.g., available books, users)
+
+        return view('borrows.edit', compact('borrow'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Borrow $borrow)
     {
-        //
+        // Validate the form data
+        $validatedData = $request->validate([
+            'book_id' => 'required',
+            'user_id' => 'required',
+            'borrowed_at' => 'required',
+            'return_date' => 'required',
+        ]);
+
+        // Update the borrow record
+        $borrow->update($validatedData);
+
+        // Redirect or return a response as needed
+        return redirect()->route('borrows.index')->with('success', 'Borrow record updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Borrow $borrow)
     {
-        //
+        // Delete the borrow record
+        $borrow->delete();
+
+        // Redirect or return a response as needed
+        return redirect()->route('borrows.index')->with('success', 'Borrow record deleted successfully.');
     }
 }

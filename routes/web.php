@@ -10,6 +10,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RepositoryController;
+use App\Http\Controllers\BorrowController;
 
 
 
@@ -117,3 +118,10 @@ Route::post('/repositories', [RepositoryController::class, 'store'])->name('repo
 Route::get('/repositories/{repository}/edit', [RepositoryController::class, 'edit'])->name('repositories.edit');
 Route::put('/repositories/{repository}', [RepositoryController::class, 'update'])->name('repositories.update');
 Route::delete('/repositories/{repository}', [RepositoryController::class, 'destroy'])->name('repositories.destroy');
+
+Route::get('/borrows', [BorrowController::class, 'index'])->name('borrows.index');
+Route::get('/borrows/create', [BorrowController::class, 'create'])->name('borrows.create');
+Route::post('/borrows', [BorrowController::class, 'store'])->name('borrows.store');
+Route::get('/borrows/{borrow}/edit', [BorrowController::class, 'edit'])->name('borrows.edit');
+Route::put('/borrows/{borrow}', [BorrowController::class, 'update'])->name('borrows.update');
+Route::delete('/borrows/{borrow}', [BorrowController::class, 'destroy'])->name('borrows.destroy');
