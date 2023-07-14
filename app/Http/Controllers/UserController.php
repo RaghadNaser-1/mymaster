@@ -5,20 +5,37 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Borrow;
+
 
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function showProfile()
-    {
-        // Get the authenticated user
-        $user = Auth::user();
-        $borrowedBooks = $user->borrows()->with('book')->get();
+    // public function showProfile()
+    // {
+    //     // Get the authenticated user
+    //     $user = Auth::user();
+    //     $borrowedBooks = $user->borrows()->with('book')->get();
 
-        // Pass the user data to the profile view
-        return view('profile', compact('user','borrowedBooks'));
-    }
+    //     // Pass the user data to the profile view
+    //     return view('profile', compact('user','borrowedBooks'));
+    // }
+    public function showProfile()
+{
+    // Get the authenticated user
+    $user = auth()->user();
+
+     // Retrieve the borrowed books for the user that have not been returned
+     $borrowedBooks = $user->borrows()
+     ->where('returned', false)
+     ->with('book')
+     ->get();
+
+    // Pass the user data and borrowed books to the profile view
+    return view('profile', compact('user', 'borrowedBooks'));
+}
+
 
     public function create()
     {

@@ -125,3 +125,4 @@ Route::post('/borrows', [BorrowController::class, 'store'])->name('borrows.store
 Route::get('/borrows/{borrow}/edit', [BorrowController::class, 'edit'])->name('borrows.edit');
 Route::put('/borrows/{borrow}', [BorrowController::class, 'update'])->name('borrows.update');
 Route::delete('/borrows/{borrow}', [BorrowController::class, 'destroy'])->name('borrows.destroy');
+Route::get('/borrows/{borrow}/return', [BorrowController::class, 'return'])->name('borrows.return');

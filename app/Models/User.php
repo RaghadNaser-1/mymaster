@@ -12,6 +12,7 @@ use App\Models\Borrow;
 use App\Models\Repository;
 
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -46,10 +47,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function borrows()
-    {
-        return $this->hasMany(Borrow::class);
-    }
+    // public function borrows()
+    // {
+    //     return $this->hasMany(Borrow::class);
+    // }
+    public function borrows(): HasMany
+{
+    return $this->hasMany(Borrow::class);
+}
+
 
     public function repositories(): HasMany
     {

@@ -32,21 +32,32 @@ class BorrowController extends Controller
 
 
     public function store(Request $request)
-    {
-        // Validate the form data
-        $validatedData = $request->validate([
-            'book_id' => 'required',
-            'user_id' => 'required',
-            'borrowed_at' => 'required',
-            'estimated_end_time' => 'required',
-        ]);
+{
+    // Validate the form data
+    $validatedData = $request->validate([
+        'book_id' => 'required',
+        'user_id' => 'required',
+        'borrowed_at' => 'required',
+        'estimated_end_time' => 'required',
+    ]);
 
-        // Create a new borrow record
-        $borrow = Borrow::create($validatedData);
+    // Create a new borrow record
+    $borrow = new Borrow();
+    $borrow->book_id = $validatedData['book_id'];
+    $borrow->user_id = $validatedData['user_id'];
+    $borrow->borrowed_at = $validatedData['borrowed_at'];
+    $borrow->estimated_end_time = $validatedData['estimated_end_time'];
+    $borrow->save();
 
-        // Redirect or return a response as needed
-        return redirect()->route('borrows.index')->with('success', 'Borrow record created successfully.');
-    }
+    // Update the book quantity
+    $book = Book::find($validatedData['book_id']);
+    $book->quantity -= 1;
+    $book->save();
+
+    // Redirect or return a response as needed
+    return redirect()->route('borrows.index')->with('success', 'Borrow created successfully!');
+}
+
 
     public function show(Borrow $borrow)
     {
@@ -87,4 +98,19 @@ class BorrowController extends Controller
         // Redirect or return a response as needed
         return redirect()->route('borrows.index')->with('success', 'Borrow record deleted successfully.');
     }
+    public function return(Borrow $borrow)
+{
+    // Update the borrowed book status to returned
+    $borrow->returned = true;
+    $borrow->save();
+
+    // Increase the quantity of the book by one
+    $book = $borrow->book;
+    $book->quantity += 1;
+    $book->save();
+
+    // Redirect or return a response as needed
+    return redirect()->back()->with('success', 'Book returned successfully.');
+}
+
 }

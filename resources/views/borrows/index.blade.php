@@ -36,7 +36,14 @@
                     <td>{{ $borrow->user->name }}</td>
                     <td>{{ $borrow->borrowed_at }}</td>
                     <td>{{ $borrow->estimated_end_time }}</td>
-                    <td>{{ $borrow->returned ? 'Yes' : 'No' }}</td>
+                    <td>
+                        @if ($borrow->returned)
+                            Yes
+                        @else
+                            <a href="{{ route('borrows.return', $borrow) }}" class="btn btn-primary">Return Book</a>
+                        @endif
+                    </td>
+
 
                         <td>
                             <a href="{{ route('borrows.edit', $borrow) }}" class="btn btn-primary" style="width: 75px;">Edit</a>
