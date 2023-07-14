@@ -126,3 +126,7 @@ Route::get('/borrows/{borrow}/edit', [BorrowController::class, 'edit'])->name('b
 Route::put('/borrows/{borrow}', [BorrowController::class, 'update'])->name('borrows.update');
 Route::delete('/borrows/{borrow}', [BorrowController::class, 'destroy'])->name('borrows.destroy');
 Route::get('/borrows/{borrow}/return', [BorrowController::class, 'return'])->name('borrows.return');
+
+// Route::post('/books/{book}/favorite', [BookController::class, 'favorite'])->name('books.favorite');
+Route::get('/books/{book}/favorite', [BookController::class, 'favorite'])->name('books.favorite');
+

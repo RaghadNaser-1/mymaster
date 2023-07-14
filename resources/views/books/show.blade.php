@@ -26,7 +26,15 @@
                         <p class="card-text">Author: {{ $book->author }}</p>
                         <p class="card-text">Category: {{ $book->category->name }}</p>
                         <p class="card-text">{{ $book->description }}</p>
-                        <button class="btn btn-primary" id="borrowButton">Borrow</button>
+                        <button class="btn btn-primary " id="borrowButton">Borrow</button>
+                        @auth
+    {{-- <form action="{{ route('books.favorite', $book) }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-primary">Add to Favorites</button>
+    </form> --}}
+    <a href="{{ route('books.favorite', $book) }}" class="btn btn-primary">Add to Favorites</a>
+@endauth
+
                     </div>
                     <div class="book-details card-body">
                         <!-- Book information... -->

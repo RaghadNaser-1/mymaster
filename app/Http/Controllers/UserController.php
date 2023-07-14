@@ -31,9 +31,10 @@ class UserController extends Controller
      ->where('returned', false)
      ->with('book')
      ->get();
+     $favoriteBooks = $user->favorites;
 
     // Pass the user data and borrowed books to the profile view
-    return view('profile', compact('user', 'borrowedBooks'));
+    return view('profile', compact('user', 'borrowedBooks','favoriteBooks'));
 }
 
 

@@ -30,6 +30,18 @@
                         </ul>
                     @endif
                 </div>
+                <div class="favorite-books">
+                    <h2>Favorite Books</h2>
+                    @if ($favoriteBooks->isEmpty())
+                        <p>No favorite books selected.</p>
+                    @else
+                        <ul>
+                            @foreach ($favoriteBooks as $favorite)
+                                <li>{{ $favorite->title }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
             </div>
         </div>
     </div>

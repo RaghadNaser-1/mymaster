@@ -7,6 +7,7 @@ use App\Models\Borrow;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -45,6 +46,9 @@ public function show($id)
 
 public function borrow(Book $book)
 {
+    if ($this->getUserBorrowedBooksCount() >= 3) {
+        return redirect()->back()->with('error', 'You have reached the maximum limit of borrowed books.');
+    }
     // Check if the book quantity is greater than 0
     if ($book->quantity > 0) {
         // Decrement the book quantity by one
@@ -66,6 +70,11 @@ public function borrow(Book $book)
         // Book quantity is 0, display an error message or handle the situation accordingly
         return redirect()->back()->with('error', 'Book is currently not available for borrowing.');
     }
+}
+private function getUserBorrowedBooksCount()
+{
+    $user = Auth::user();
+    return $user->borrows()->where('returned', false)->count();
 }
 public function edit($id)
     {
@@ -140,4 +149,15 @@ public function destroy( $id)
 
         return redirect()->route('bookstable')->with('success', 'Book added successfully.');
     }
+    public function favorite(Book $book)
+{
+    $user = Auth::user();
+
+    // Attach the book to the user's favorites
+    $user->favorites()->attach($book);
+
+    // Redirect or return a response as needed
+    return redirect()->back()->with('success', 'Book added to favorites.');
+}
+
 }
