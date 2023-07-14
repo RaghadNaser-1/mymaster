@@ -36,19 +36,22 @@ class RepositoryController extends Controller
         'title' => 'required',
         'author' => 'required',
         'file_path' => 'required',
+        'accepted' => 'required|boolean',
     ]);
 
-    // Create a new research item
+    // Create a new repository item
     $repository = new Repository();
     $repository->title = $validatedData['title'];
     $repository->author = $validatedData['author'];
     $repository->file_path = $validatedData['file_path'];
+    $repository->accepted = $validatedData['accepted'];
     $repository->user_id = auth()->user()->id; // Assuming you have authentication in place
     $repository->save();
 
     // Redirect or return a response as needed
-    return redirect()->route('repositories.index')->with('success', 'Research added successfully!');
+    return redirect()->route('repositories.index')->with('success', 'Repository added successfully!');
 }
+
     /**
      * Display the specified resource.
      */

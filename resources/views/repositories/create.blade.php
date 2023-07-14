@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Create Repository</h1>
+        <h1>Create Research</h1>
 
         <form action="{{ route('repositories.store') }}" method="POST">
             @csrf
