@@ -2,7 +2,17 @@
 
 @section('content')
     <div class="row g-0" style="background-color: #f4623a; height: 70px;"></div>
-
+<!-- profile.blade.php -->
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
     <div class="container mt-4 ">
         <div class="card">
             <div class="card-body">
@@ -28,7 +38,15 @@
                                 <li class="list-group-item">
                                     <i class="fas fa-book"></i>
                                     <a href="{{ route('books.show', $borrow->book->id) }}">{{ $borrow->book->title }}</a>
-                                    <a href="{{ route('books.favorite', $borrow->book) }}" class="btn btn-primary"><i class="fas fa-heart"></i> Add to Favorites</a>
+                                    <span>- Due Date: {{ $borrow->estimated_end_time }}</span>
+                                    {{-- <a href="{{ route('books.renew', $borrow->book->id) }}" class="btn btn-primary">Renew</a> --}}
+                                    <form action="{{ route('books.renew', $borrow->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">Renew</button>
+                                    </form>
+
+
+                                    {{-- <a href="{{ route('books.favorite', $borrow->book) }}" class="btn btn-primary"><i class="fas fa-heart"></i> Add to Favorites</a> --}}
                                 </li>
                             @endforeach
                         </ul>

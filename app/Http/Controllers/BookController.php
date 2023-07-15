@@ -7,6 +7,7 @@ use App\Models\Borrow;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
@@ -173,6 +174,30 @@ public function unfavorite(Book $book)
 
     return redirect()->back()->with('success', 'Book removed from favorites successfully!');
 }
+
+public function renew($id)
+{
+    $borrow = Borrow::find($id);
+
+    if ($borrow && $borrow->isEligibleForRenewal()) {
+        // Convert estimated_end_time to a Carbon instance
+        $estimatedEndTime = Carbon::parse($borrow->estimated_end_time);
+
+        // Calculate the new estimated_end_time by adding a week
+        $newEstimatedEndTime = $estimatedEndTime->addWeek();
+
+        // Update the borrow's estimated_end_time and increment renewals
+        $borrow->estimated_end_time = $newEstimatedEndTime;
+        $borrow->renewals += 1;
+        $borrow->save();
+
+        return redirect()->back()->with('success', 'Book renewed successfully.');
+    } else {
+        return redirect()->back()->with('error', 'Book is not eligible for renewal.');
+    }
+}
+
+
 
 
 }
