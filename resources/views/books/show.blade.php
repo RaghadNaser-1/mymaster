@@ -25,10 +25,14 @@
                         <h5 class="card-title">{{ $book->title }}</h5>
                         {{-- <p class="card-text">Author: {{ $book->author }}</p> --}}
                         <p class="card-text">Authors:
-                            @foreach ($book->authors as $author)
+                            @foreach ($book->authors as $index => $author)
                                 <a href="{{ route('author.show', $author->id) }}">{{ $author->name }}</a>
+                                @if ($index < count($book->authors) - 1)
+                                    ,
+                                @endif
                             @endforeach
                         </p>
+
 
                         <p class="card-text">Category: {{ $book->category->name }}</p>
                         <p class="card-text">{{ $book->description }}</p>

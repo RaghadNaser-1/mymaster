@@ -9,8 +9,13 @@
 
     <div class="author-bio">
         <h2>Biography:</h2>
-        <p>{{ $author->bio }}</p>
+        @if ($author->bio)
+            <p>{{ $author->bio }}</p>
+        @else
+            <p>No biography available.</p>
+        @endif
     </div>
+
 
     <div class="author-books">
         <h2>Books by {{ $author->name }}</h2>
@@ -36,7 +41,7 @@
 <style>
     .book-image {
   width: 100%; /* Set your desired width */
-  height: 400px; /* Set your desired height */
+  height: 450px; /* Set your desired height */
   object-fit: fill; /* Maintain aspect ratio and cover the container (use cover) */
 }
 .divider-left {
