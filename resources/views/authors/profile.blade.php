@@ -5,6 +5,7 @@
 
 <div class="container mt-4">
     <h1 class="author-name">{{ $author->name }}</h1>
+    <hr class="divider-left" >
 
     <div class="author-bio">
         <h2>Biography:</h2>
@@ -17,20 +18,35 @@
             @foreach ($author->books as $book)
                 <li class="col-md-3">
                     <div class="card">
-                        <img src="{{ $book->image }}" class="card-img-top" alt="{{ $book->title }}">
-                        <div class="card-body">
+                        <a href="{{ route('books.show', $book->id) }}">
+                            <img src="{{ $book->image }}" class="card-img-top book-image" alt="{{ $book->title }}" >
+                        </a>
+                                                {{-- <div class="card-body">
                             <h5 class="card-title">{{ $book->title }}</h5>
                             <p class="card-text">Author: {{ $book->author }}</p>
                             <p class="card-text">Description: {{ $book->description }}</p>
                             <p class="card-text">Category: {{ $book->category->name }}</p>
-                        </div>
+                        </div> --}}
                     </div>
                 </li>
             @endforeach
         </ul>
     </div>
 </div>
-
+<style>
+    .book-image {
+  width: 100%; /* Set your desired width */
+  height: 400px; /* Set your desired height */
+  object-fit: fill; /* Maintain aspect ratio and cover the container (use cover) */
+}
+.divider-left {
+            height: 0.2rem;
+    max-width: 3.25rem;
+    /* margin: 1.5rem auto; */
+    background-color: #f4623a;
+    opacity: 1;
+        }
+</style>
 
 
 @endsection

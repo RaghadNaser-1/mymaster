@@ -69,25 +69,42 @@ class BorrowController extends Controller
     public function edit(Borrow $borrow)
     {
         // Provide data for editing the borrow record (e.g., available books, users)
+        $books = Book::all(); // Retrieve all books
 
-        return view('borrows.edit', compact('borrow'));
+        return view('borrows.edit', compact('borrow','books'));
     }
 
+    // public function update(Request $request, Borrow $borrow)
+    // {
+    //     // Validate the form data
+    //     $validatedData = $request->validate([
+    //         'book_id' => 'required',
+    //         'user_id' => 'required',
+    //         'borrowed_at' => 'required',
+    //         'return_date' => 'required',
+    //     ]);
+
+    //     // Update the borrow record
+    //     $borrow->update($validatedData);
+
+    //     // Redirect or return a response as needed
+    //     return redirect()->route('borrows.index')->with('success', 'Borrow record updated successfully.');
+    // }
     public function update(Request $request, Borrow $borrow)
     {
         // Validate the form data
         $validatedData = $request->validate([
-            'book_id' => 'required',
-            'user_id' => 'required',
-            'borrowed_at' => 'required',
-            'return_date' => 'required',
+            'returned' => 'required|boolean',
         ]);
 
         // Update the borrow record
-        $borrow->update($validatedData);
-
+        $borrow->returned = $validatedData['returned'];
+        $borrow->save();
+        $book = $borrow->book;
+        $book->quantity += 1;
+        $book->save();
         // Redirect or return a response as needed
-        return redirect()->route('borrows.index')->with('success', 'Borrow record updated successfully.');
+        return redirect()->route('borrows.index')->with('success', 'Borrow record updated successfully!');
     }
 
     public function destroy(Borrow $borrow)

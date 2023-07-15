@@ -54,6 +54,12 @@ class AuthorController extends Controller
     return view('authors.profile', ['author' => $author]);
 }
 
+// public function show(Author $author)
+// {
+//     return view('authors.profile', compact('author'));
+// }
+
+
 
     /**
      * Show the form for editing the specified resource.

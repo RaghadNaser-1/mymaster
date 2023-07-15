@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Book;
+use Illuminate\Support\Carbon;
 
 class Borrow extends Model
 {
@@ -17,6 +18,7 @@ class Borrow extends Model
         'estimated_end_time',
         'returned',
     ];
+    protected $dates = ['borrowed_at'];
 
     public function user()
     {
