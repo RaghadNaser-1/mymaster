@@ -23,25 +23,35 @@
                     @if ($borrowedBooks->isEmpty())
                         <p>No books borrowed.</p>
                     @else
-                        <ul>
+                        <ul class="list-group">
                             @foreach ($borrowedBooks as $borrow)
-                                <li>{{ $borrow->book->title }}</li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-book"></i>
+                                    <a href="{{ route('books.show', $borrow->book->id) }}">{{ $borrow->book->title }}</a>
+                                    <a href="{{ route('books.favorite', $borrow->book) }}" class="btn btn-primary"><i class="fas fa-heart"></i> Add to Favorites</a>
+                                </li>
                             @endforeach
                         </ul>
                     @endif
                 </div>
-                <div class="favorite-books">
+
+                <div class="favorite-books mt-4">
                     <h2>Favorite Books</h2>
                     @if ($favoriteBooks->isEmpty())
                         <p>No favorite books selected.</p>
                     @else
-                        <ul>
+                        <ul class="list-group">
                             @foreach ($favoriteBooks as $favorite)
-                                <li>{{ $favorite->title }}</li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-book"></i>
+                                    <a href="{{ route('books.show', $favorite->id) }}">{{ $favorite->title }}</a>
+                                    <a href="{{ route('books.unfavorite', $favorite) }}" class="btn btn-danger"><i class="fas fa-heart"></i> Remove from Favorites</a>
+                                </li>
                             @endforeach
                         </ul>
                     @endif
                 </div>
+
             </div>
         </div>
     </div>

@@ -129,4 +129,5 @@ Route::get('/borrows/{borrow}/return', [BorrowController::class, 'return'])->nam
 
 // Route::post('/books/{book}/favorite', [BookController::class, 'favorite'])->name('books.favorite');
 Route::get('/books/{book}/favorite', [BookController::class, 'favorite'])->name('books.favorite');
+Route::get('/books/{book}/unfavorite', [BookController::class, 'unfavorite'])->name('books.unfavorite');
 

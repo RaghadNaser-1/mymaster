@@ -38,7 +38,9 @@
         @csrf
         <button type="submit" class="btn btn-primary">Add to Favorites</button>
     </form> --}}
-    <a href="{{ route('books.favorite', $book) }}" class="btn btn-primary">Add to Favorites</a>
+    {{-- <a href="{{ route('books.favorite', $book) }}" class="btn btn-primary">Add to Favorites</a> --}}
+    <a href="{{ route('books.favorite', $book) }}" class="btn btn-primary"><i class="fas fa-heart"></i> Add to Favorites</a>
+
 @endauth
 
                     </div>

@@ -153,11 +153,26 @@ public function destroy( $id)
 {
     $user = Auth::user();
 
-    // Attach the book to the user's favorites
-    $user->favorites()->attach($book);
+    // Check if the book is not already in the user's favorites
+    if (!$user->favorites->contains($book->id)) {
+        // Attach the book to the user's favorites
+        $user->favorites()->attach($book);
+        return redirect()->back()->with('success', 'Book added to favorites.');
+    }
 
     // Redirect or return a response as needed
-    return redirect()->back()->with('success', 'Book added to favorites.');
+    return redirect()->back()->with('error', 'Book is already in favorites.');
 }
+
+public function unfavorite(Book $book)
+{
+    $user = auth()->user();
+
+    // Detach the book from the user's favorites
+    $user->favorites()->detach($book);
+
+    return redirect()->back()->with('success', 'Book removed from favorites successfully!');
+}
+
 
 }

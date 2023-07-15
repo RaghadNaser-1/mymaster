@@ -14,7 +14,7 @@
                         <div class="mb-4">
                             <form class="form-inline" action="{{ route('books.index') }}" method="GET">
                                 <div class="input-group">
-                                    <input class="form-control" type="search" placeholder="Search by book title, author name" aria-label="Search" name="search">
+                                    <input class="form-control" type="search" placeholder="Search the book" aria-label="Search" name="search">
                                     <button class="btn btn-primary" type="submit">Search</button>
                                 </div>
                             </form>
