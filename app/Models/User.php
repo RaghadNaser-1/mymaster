@@ -51,13 +51,13 @@ class User extends Authenticatable
     // {
     //     return $this->hasMany(Borrow::class);
     // }
-    public function borrows(): HasMany
+    public function borrows()
 {
     return $this->hasMany(Borrow::class);
 }
 
 
-    public function repositories(): HasMany
+    public function repositories()
     {
         return $this->hasMany(Repository::class);
     }

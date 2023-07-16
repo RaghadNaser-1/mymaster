@@ -114,6 +114,7 @@
 
 .card-img{
     border-radius: 5px;
+    border: 1px solid #6c757d;
 }
 
     .review {

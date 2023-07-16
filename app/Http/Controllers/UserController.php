@@ -32,9 +32,10 @@ class UserController extends Controller
      ->with('book')
      ->get();
      $favoriteBooks = $user->favorites;
+     $borrows = $user->borrows()->orderByDesc('borrowed_at')->get();
 
     // Pass the user data and borrowed books to the profile view
-    return view('profile', compact('user', 'borrowedBooks','favoriteBooks'));
+    return view('profile', compact('user', 'borrowedBooks','favoriteBooks','borrows'));
 }
 
 

@@ -36,14 +36,23 @@
                         <ul class="list-group">
                             @foreach ($borrowedBooks as $borrow)
                                 <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-6">
                                     <i class="fas fa-book"></i>
                                     <a href="{{ route('books.show', $borrow->book->id) }}">{{ $borrow->book->title }}</a>
                                     <span>- Due Date: {{ $borrow->estimated_end_time }}</span>
-                                    {{-- <a href="{{ route('books.renew', $borrow->book->id) }}" class="btn btn-primary">Renew</a> --}}
-                                    <form action="{{ route('books.renew', $borrow->id) }}" method="POST">
+                                        </div>
+                                    <div class="col-md-6 text-right">
+                                        <a href="{{ route('books.renew', $borrow->id) }}" class="btn btn-primary">Renew</a>
+
+                                        <a href="{{ route('borrows.return', $borrow) }}" class="btn btn-primary">Return</a>
+
+                                    </div>
+                                    </div>
+                                    {{-- <form action="{{ route('books.renew', $borrow->id) }}" method="POST">
                                         @csrf
                                         <button type="submit" class="btn btn-primary">Renew</button>
-                                    </form>
+                                    </form> --}}
 
 
                                     {{-- <a href="{{ route('books.favorite', $borrow->book) }}" class="btn btn-primary"><i class="fas fa-heart"></i> Add to Favorites</a> --}}
@@ -69,6 +78,28 @@
                         </ul>
                     @endif
                 </div>
+                <div class="borrow-history mt-4">
+                    <h2 class="mb-4">Borrowing History</h2>
+                    @if ($borrows->isEmpty())
+                        <p>No borrowing history found.</p>
+                    @else
+                        <ul class="list-group">
+                            @foreach ($borrows as $borrow)
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>Book: <a href="{{ route('books.show', $borrow->book->id) }}">{{ $borrow->book->title }}</a></h5>
+                                            <p class="mb-0">Borrowed At: {{ \Carbon\Carbon::parse($borrow->borrowed_at)->format('Y-m-d') }}</p>
+                                            <p>Returned: {{ $borrow->returned ? 'Yes' : 'No' }}</p>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+
 
             </div>
         </div>
