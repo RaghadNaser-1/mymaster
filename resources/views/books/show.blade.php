@@ -103,6 +103,28 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="related-books mt-5">
+            <h2 class="mb-4">Related Books</h2>
+            <div class="row">
+                @foreach ($relatedBooks as $relatedBook)
+                    <div class="col-md-3 mb-4">
+                        <a href="{{ route('books.show', $relatedBook->id) }}">
+                        <div class="card h-100">
+
+                            <img src="{{ $relatedBook->image }}" class="card-img-top" alt="{{ $relatedBook->title }}" height="100%">
+                            {{-- <div class="card-body text-center">
+                                <a href="{{ route('books.show', $relatedBook->id) }}" class="btn btn-primary">View Details</a>
+                            </div> --}}
+                        </div>
+                        </a>
+
+                    </div>
+                @endforeach
+            </div>
+        </div>
+</div>
+
 <style>
     .rating {
     color: #f4623a;

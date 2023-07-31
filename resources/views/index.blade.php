@@ -67,7 +67,10 @@
                     <div class="col-lg-8 text-center">
                         <h2 class="text-white mt-0">We've got what you need!</h2>
                         <hr class="divider divider-light" />
-                        <p class="text-white-75 mb-4">At our library, we are passionate about empowering learners and fostering a love for knowledge. With a strong commitment to education, we strive to provide a seamless and enriching experience for students, researchers, and book enthusiasts alike. Our library system is meticulously curated to offer a diverse collection of books, textbooks, and digital resources that cater to various academic disciplines and personal interests. Whether you're a student seeking affordable textbook rentals or an avid reader in search of captivating stories, our platform is designed to meet your needs. We are dedicated to promoting accessibility, affordability, and the joy of learning through our user-friendly interface, convenient rental options, and a welcoming community of learners. Join us on this educational journey as we pave the way for a brighter future through the power of knowledge.</p>
+                        <p class="text-white-75 mb-4">At our library, we are passionate about empowering learners and fostering a love for knowledge.
+                            With a strong commitment to education, we strive to provide a seamless and enriching experience for students, researchers, and book enthusiasts alike.
+                            Our library system is meticulously curated to offer a diverse collection of books, textbooks, and digital resources that cater to various academic disciplines and personal interests.
+                             Join us on this educational journey as we pave the way for a brighter future through the power of knowledge.</p>
                         <a class="btn btn-light btn-xl" href="#services">Get Started!</a>
                     </div>
                 </div>
@@ -218,11 +221,6 @@
             </div>
         </section>
 
-
-
-
-
-
         <section class="page-section " id="contact">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -233,11 +231,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <i class="fas fa-map-marker-alt fa-2x"></i>
-                                <p>123 Library Street, City, Country</p>
+                                <p>123 Library Street, Amman, Jordan</p>
                             </div>
                             <div class="col-md-6">
                                 <i class="fas fa-envelope fa-2x"></i>
-                                <p><a href="mailto:info@example.com">info@example.com</a></p>
+                                <p><a href="mailto:info@u-library.com">info@u-library.com</a></p>
                             </div>
                         </div>
                         <div class="row">

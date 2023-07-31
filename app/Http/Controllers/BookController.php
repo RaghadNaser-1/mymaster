@@ -42,7 +42,11 @@ public function index(Request $request)
 public function show($id)
 {
     $book = Book::with('category', 'reviews.user')->findOrFail($id);
-    return view('books.show', compact('book'));
+    $relatedBooks = Book::where('category_id', $book->category_id)
+                        ->where('id', '!=', $book->id)
+                        ->take(4)
+                        ->get();
+    return view('books.show', compact('book', 'relatedBooks'));
 }
 
 public function borrow(Book $book)
