@@ -43,7 +43,7 @@
                 {{-- <a class="btn btn-primary btn-xl" href="#about">Find Out More</a> --}}
                 <form class="form-inline" action="{{ route('books.index') }}" method="GET">
                     <div class="input-group">
-                        <input class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search" name="search">
+                        <input class="form-control form-control-lg" type="search" placeholder="Book, Author.." aria-label="Search" name="search">
                         <select class="form-select form-select-lg" name="category">
                             <option value="">All Categories</option>
                             @foreach($categories as $category)

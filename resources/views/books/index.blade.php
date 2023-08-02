@@ -14,7 +14,7 @@
                         <div class="mb-4">
                             <form class="form-inline" action="{{ route('books.index') }}" method="GET">
                                 <div class="input-group">
-                                    <input class="form-control" type="search" placeholder="Search the book" aria-label="Search" name="search">
+                                    <input class="form-control" type="search" placeholder="Book, Author .." aria-label="Search" name="search">
                                     <button class="btn btn-primary" type="submit">Search</button>
                                 </div>
                             </form>
@@ -60,13 +60,44 @@
                 </div>
 
                 <!-- Pagination links -->
-                {{-- <div class="row">
+                <div class="row">
                     <div class="col-md-12 text-center">
-                        <ul class="pagination justify-content-center">
+
+                        {{-- <ul class="pagination justify-content-center">
                             {{ $books->links() }}
-                        </ul>
+                        </ul> --}}
+
+                          <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-end">
+                                @if ($books->onFirstPage())
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                    </li>
+                                @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $books->previousPageUrl() }}" tabindex="-1">Previous</a>
+                                    </li>
+                                @endif
+
+                                @foreach ($books->getUrlRange(1, $books->lastPage()) as $page => $url)
+                                    <li class="page-item {{ $page == $books->currentPage() ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                    </li>
+                                @endforeach
+
+                                @if ($books->hasMorePages())
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $books->nextPageUrl() }}">Next</a>
+                                    </li>
+                                @else
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
                     </div>
-                </div> --}}
+                </div>
 
             </div>
         </div>

@@ -48,58 +48,63 @@
 @endauth
 
                     </div>
-                    <div class="book-details card-body">
-                        <!-- Book information... -->
-
-                       <!-- Reviews -->
-                    <h3>Reviews</h3>
-
-                    @forelse ($book->reviews as $review)
-                        <div class="review">
-                            <h5>{{ $review->user->name }}</h5>
-                            <div class="rating">
-                                @for ($i = 1; $i <= 5; $i++)
-                                    @if ($i <= $review->rating)
-                                    <i class="fas fa-star filled"></i>
-                                    @else
-                                        <i class="far fa-star"></i>
-                                    @endif
-                                @endfor
-                            </div>
-                            <p>{{ $review->comment }}</p>
-                        </div>
-                    @empty
-                        <p>No reviews yet.</p>
-                    @endforelse
 
 
-                        <!-- Add a review -->
-                        @auth
-                            <h3>Add a Review</h3>
-                            <form action="{{ route('reviews.store', $book) }}" method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="rating">Rating:</label>
-                                    <select name="rating" id="rating" class="form-control">
-                                        <option value="5">5 stars</option>
-                                        <option value="4">4 stars</option>
-                                        <option value="3">3 stars</option>
-                                        <option value="2">2 stars</option>
-                                        <option value="1">1 star</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="comment">Comment:</label>
-                                    <textarea name="comment" id="comment" class="form-control" rows="3"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                        @else
-                            <p>You must be logged in to leave a review.</p>
-                        @endauth
-                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="book-details card-body">
+            <!-- Book information... -->
+
+           <!-- Reviews -->
+        <h3>Reviews</h3>
+
+        @forelse ($book->reviews as $review)
+            <div class="review">
+                <h5>{{ $review->user->name }}</h5>
+                <div class="rating">
+                    @for ($i = 1; $i <= 5; $i++)
+                        @if ($i <= $review->rating)
+                        <i class="fas fa-star filled"></i>
+                        @else
+                            <i class="far fa-star"></i>
+                        @endif
+                    @endfor
+                </div>
+                <p>{{ $review->comment }}</p>
+            </div>
+        @empty
+            <p>No reviews yet.</p>
+        @endforelse
+
+
+            <!-- Add a review -->
+            @auth
+                <h3>Add a Review</h3>
+                <form action="{{ route('reviews.store', $book) }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="rating">Rating:</label>
+                        <select name="rating" id="rating" class="form-control">
+                            <option value="5">5 stars</option>
+                            <option value="4">4 stars</option>
+                            <option value="3">3 stars</option>
+                            <option value="2">2 stars</option>
+                            <option value="1">1 star</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea name="comment" id="comment" class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            @else
+                <p>You must be logged in to leave a review.</p>
+            @endauth
         </div>
     </div>
 
