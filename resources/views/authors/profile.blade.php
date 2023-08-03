@@ -4,6 +4,16 @@
 <div class="row g-0" style="background-color: #f4623a; height:70px"></div>
 
 <div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" ><a href="{{ route('books.index') }}">Books</a></li>
+            <li class="breadcrumb-item active" ><a href="{{ route('books.show', $author->books[0]->id) }}">{{ $author->books[0]->title }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $author->name }}</li>
+
+
+        </ol>
+    </nav>
     <h1 class="author-name">{{ $author->name }}</h1>
     <hr class="divider-left" >
 

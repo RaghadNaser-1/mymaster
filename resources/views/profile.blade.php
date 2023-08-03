@@ -49,9 +49,15 @@
                                         <span>- Due Date: {{ $borrow->estimated_end_time }}</span>
                                             </div>
                                         <div class="col-md-6 text-right">
-                                            <a href="{{ route('books.renew', $borrow->id) }}" class="btn btn-primary">Renew</a>
+                                            {{-- <a href="{{ route('books.renew', $borrow->id) }}" class="btn btn-primary">Renew</a> --}}
+                                            <a href="{{ route('books.renew', $borrow->id) }}" class="btn btn-success">
+                                                <i class="fas fa-sync-alt"></i> Renew
+                                            </a>
+                                            <a href="{{ route('borrows.return', $borrow) }}" class="btn btn-danger">
+                                                <i class="fas fa-arrow-left"></i> Return
+                                            </a>
 
-                                            <a href="{{ route('borrows.return', $borrow) }}" class="btn btn-primary">Return</a>
+                                            {{-- <a href="{{ route('borrows.return', $borrow) }}" class="btn btn-primary">Return</a> --}}
 
                                         </div>
                                         </div>
@@ -75,7 +81,7 @@
                                         <a href="{{ route('books.show', $favorite->id) }}">{{ $favorite->title }}</a>
                                         </div>
                                         <div class="col-md-6 text-right">
-                                        <a href="{{ route('books.unfavorite', $favorite) }}" class="btn btn-danger"><i class="fas fa-heart"></i> Remove </a>
+                                        <a href="{{ route('books.unfavorite', $favorite) }}" class="btn btn-danger"><i class="fas fa-heart-broken"></i> Remove </a>
                                         </div>
                                         </div>
                                     </li>

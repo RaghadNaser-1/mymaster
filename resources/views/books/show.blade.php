@@ -14,6 +14,16 @@
     </div>
 @endif
     <div class="container mt-4">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" ><a href="{{ route('books.index') }}">Books</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $book->title }}</li>
+
+            </ol>
+        </nav>
+        
         <div class=" mb-4">
             <div class="row g-4">
                 <div class="col-md-3">
