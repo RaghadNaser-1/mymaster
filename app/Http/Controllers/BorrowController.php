@@ -119,6 +119,7 @@ class BorrowController extends Controller
 {
     // Update the borrowed book status to returned
     $borrow->returned = true;
+    $borrow->returned_at = now();
     $borrow->save();
 
     // Increase the quantity of the book by one

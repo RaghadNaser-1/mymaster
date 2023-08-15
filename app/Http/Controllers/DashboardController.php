@@ -13,7 +13,9 @@ class DashboardController extends Controller
     public function index()
     {
         // Fetch necessary data from your database or external APIs
-        $userCount = User::count();
+        // $userCount = User::count();
+        $userCount = User::where('role_id', 2)->count();
+
         $bookCount = Book::count();
         $authorCount = Author::count();
         $borrowCount = Borrow::count();
@@ -26,7 +28,9 @@ class DashboardController extends Controller
 
     public function users()
 {
-    $users = User::all(); // Retrieve all users from the `users` table
+    // $users = User::all(); // Retrieve all users from the `users` table
+    $users = User::where('role_id', 2)->get();
+
 
     return view('dashboard.users.users', compact('users'));
 }

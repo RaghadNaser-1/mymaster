@@ -23,7 +23,7 @@
                     <th>Book</th>
                     <th>User</th>
                     <th>Borrowed At</th>
-                    <th>Return Date</th>
+                    <th>Due Date</th>
                     <th>Returned</th>
                     <th>Actions</th>
                 </tr>

@@ -23,7 +23,7 @@
 
             </ol>
         </nav>
-        
+
         <div class=" mb-4">
             <div class="row g-4">
                 <div class="col-md-3">
@@ -113,7 +113,7 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             @else
-                <p>You must be logged in to leave a review.</p>
+                <p>You must <a href="{{ route('login') }}">login</a> to leave a review.</p>
             @endauth
         </div>
     </div>
