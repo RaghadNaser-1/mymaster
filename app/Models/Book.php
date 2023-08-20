@@ -29,5 +29,10 @@ public function reviews()
     return $this->hasMany(Review::class);
 }
 
+public function borrows()
+{
+    return $this->hasMany(Borrow::class);
+}
+
 
 }
