@@ -8,11 +8,29 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-    public function index()
-    {
-        $reviews = Review::paginate(9);
-        return view('reviews.index', compact('reviews'));
+    // public function index()
+    // {
+    //     $reviews = Review::paginate(9);
+    //     return view('reviews.index', compact('reviews'));
+    // }
+    public function index(Request $request)
+{
+    $query = Review::query()->with(['user', 'book']);
+
+    if ($request->has('search')) {
+        $searchTerm = $request->input('search');
+        $query->whereHas('user', function ($subquery) use ($searchTerm) {
+            $subquery->where('name', 'like', '%' . $searchTerm . '%');
+        })->orWhereHas('book', function ($subquery) use ($searchTerm) {
+            $subquery->where('title', 'like', '%' . $searchTerm . '%');
+        });
     }
+
+    $reviews = $query->paginate(9); // Adjust the pagination size as needed
+
+    return view('reviews.index', compact('reviews'));
+}
+
 
     public function store(Request $request, Book $book)
 {

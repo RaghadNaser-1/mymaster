@@ -10,11 +10,25 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $categories = Category::paginate(9);
-        return view('categories.index', compact('categories'));
+    // public function index()
+    // {
+    //     $categories = Category::paginate(9);
+    //     return view('categories.index', compact('categories'));
+    // }
+    public function index(Request $request)
+{
+    $query = Category::query();
+
+    if ($request->has('search')) {
+        $searchTerm = $request->input('search');
+        $query->where('name', 'like', '%' . $searchTerm . '%');
     }
+
+    $categories = $query->paginate(10); // Adjust the pagination size as needed
+
+    return view('categories.index', compact('categories'));
+}
+
 
     /**
      * Show the form for creating a new resource.

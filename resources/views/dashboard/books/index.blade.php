@@ -32,18 +32,13 @@
         </div>
     </div>
 </form>
-{{-- <form class="form-inline" action="{{ route('bookstable') }}" method="GET" class="mb-3">
-    <div class="input-group">
-        <input class="form-control form-control-lg" type="search" placeholder="Book, Author.." aria-label="Search" name="search">
-        <select class="form-select form-select-lg" name="category">
-            <option value="">All Categories</option>
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
-        </select>
-        <button class="btn btn-primary" type="submit">Search</button>
-    </div>
-</form> --}}
+<div class="mb-4">
+    @if ($books->total() > 0)
+        <p>{{ $books->total() }} results found.</p>
+    @else
+        <p>No results found.</p>
+    @endif
+</div>
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">

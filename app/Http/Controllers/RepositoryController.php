@@ -10,12 +10,30 @@ class RepositoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $repositories = Repository::paginate(9);
+    // public function index()
+    // {
+    //     $repositories = Repository::paginate(9);
 
-        return view('repositories.index', compact('repositories'));
+    //     return view('repositories.index', compact('repositories'));
+    // }
+    public function index(Request $request)
+{
+    $query = Repository::query()->with('user');
+
+    if ($request->has('search')) {
+        $searchTerm = $request->input('search');
+        $query->where('title', 'like', '%' . $searchTerm . '%')
+            ->orWhere('author', 'like', '%' . $searchTerm . '%')
+            ->orWhereHas('user', function ($subquery) use ($searchTerm) {
+                $subquery->where('name', 'like', '%' . $searchTerm . '%');
+            });
     }
+
+    $repositories = $query->paginate(9); // Adjust the pagination size as needed
+
+    return view('repositories.index', compact('repositories'));
+}
+
 
     /**
      * Show the form for creating a new resource.

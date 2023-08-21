@@ -18,6 +18,13 @@
                 </div>
             </div>
         </form>
+        <div class="mb-4">
+            @if ($authors->total() > 0)
+                <p>{{ $authors->total() }} results found.</p>
+            @else
+                <p>No results found.</p>
+            @endif
+        </div>
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">

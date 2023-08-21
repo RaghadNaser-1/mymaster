@@ -9,6 +9,22 @@
     <!-- Add New Book Button -->
     <a href="{{ route('repositories.create') }}" class="btn btn-primary mb-4">Add New Research</a>
 </div>
+
+<form action="{{ route('repositories.index') }}" method="GET" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="Search by title, author, or user name...">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+<div class="mb-4">
+    @if ($repositories->total() > 0)
+        <p>{{ $repositories->total() }} results found.</p>
+    @else
+        <p>No results found.</p>
+    @endif
+</div>
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">

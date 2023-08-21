@@ -9,6 +9,24 @@
             <!-- Add New Book Button -->
             <a href="{{ route('borrows.create') }}" class="btn btn-primary mb-4">Add New Borrow</a>
         </div>
+
+        <form action="{{ route('borrows.index') }}" method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search by book title or user name...">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
+<div class="mb-4">
+    @if ($borrows->total() > 0)
+        <p>{{ $borrows->total() }} results found.</p>
+    @else
+        <p>No results found.</p>
+    @endif
+</div>
+
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Borrow Records</h6>

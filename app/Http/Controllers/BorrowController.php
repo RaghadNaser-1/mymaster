@@ -14,13 +14,31 @@ class BorrowController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        // Retrieve all borrows
-        $borrows = Borrow::paginate(9);
+    // public function index()
+    // {
+    //     // Retrieve all borrows
+    //     $borrows = Borrow::paginate(9);
 
-        return view('borrows.index', compact('borrows'));
+    //     return view('borrows.index', compact('borrows'));
+    // }
+    public function index(Request $request)
+{
+    $query = Borrow::query()->with(['book', 'user']);
+
+    if ($request->has('search')) {
+        $searchTerm = $request->input('search');
+        $query->whereHas('book', function ($subquery) use ($searchTerm) {
+            $subquery->where('title', 'like', '%' . $searchTerm . '%');
+        })->orWhereHas('user', function ($subquery) use ($searchTerm) {
+            $subquery->where('name', 'like', '%' . $searchTerm . '%');
+        });
     }
+
+    $borrows = $query->paginate(9); // Adjust the pagination size as needed
+
+    return view('borrows.index', compact('borrows'));
+}
+
 
     public function create()
     {

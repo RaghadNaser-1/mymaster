@@ -9,6 +9,21 @@
     <!-- Add New Book Button -->
     {{-- <a href="{{ route('reviews.create') }}" class="btn btn-primary mb-4">Add New Review</a> --}}
 </div>
+<form action="{{ route('reviews.index') }}" method="GET" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="Search by user name or book title...">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+<div class="mb-4">
+    @if ($reviews->total() > 0)
+        <p>{{ $reviews->total() }} results found.</p>
+    @else
+        <p>No results found.</p>
+    @endif
+</div>
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">
