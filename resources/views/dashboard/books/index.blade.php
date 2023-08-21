@@ -73,6 +73,35 @@
                     @endforeach
                 </tbody>
               </table>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    @if ($books->onFirstPage())
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                    @else
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $books->previousPageUrl() }}" tabindex="-1">Previous</a>
+                        </li>
+                    @endif
+
+                    @foreach ($books->getUrlRange(1, $books->lastPage()) as $page => $url)
+                        <li class="page-item {{ $page == $books->currentPage() ? 'active' : '' }}">
+                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                        </li>
+                    @endforeach
+
+                    @if ($books->hasMorePages())
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $books->nextPageUrl() }}">Next</a>
+                        </li>
+                    @else
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    @endif
+                </ul>
+            </nav>
           </div>
       </div>
   </div>

@@ -102,8 +102,8 @@
                         @if ($mostBorrowedBook)
 
                             <p> {{ $mostBorrowedBook->title }}</p>
-                            <img src="{{ $mostBorrowedBook->image }}" alt="book cover" width="150px" height="200px">
-
+                            {{-- <img src="{{ $mostBorrowedBook->image }}" alt="book cover" width="150px" height="200px"> --}}
+                            <p>Total Borrow: {{ $mostBorrowedBook->borrows_count}}</p>
                         @else
                             No books found.
                         @endif

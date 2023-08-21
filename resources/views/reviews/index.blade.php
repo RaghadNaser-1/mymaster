@@ -20,6 +20,7 @@
               <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                       <tr>
+                          <th>ID</th>
                           <th>User</th>
                           <th>Book</th>
                           <th>Comment</th>
@@ -28,8 +29,9 @@
                           <th>Action</th>
                       </tr>
                   </thead>
-                  <tfoot>
+                  {{-- <tfoot>
                       <tr>
+                        <th>ID</th>
                         <th>User</th>
                         <th>Book</th>
                         <th>Comment</th>
@@ -37,10 +39,11 @@
 
                         <th>Action</th>
                       </tr>
-                  </tfoot>
+                  </tfoot> --}}
                   <tbody>
                     @foreach ($reviews as $review)
                         <tr>
+                            <td>{{ $review->id }}</td>
                             <td>{{ $review->user->name }}</td>
                             <td>{{ $review->book->title }}</td>
                             <td>{{ $review->comment }}</td>
@@ -59,6 +62,35 @@
                 </tbody>
 
               </table>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    @if ($reviews->onFirstPage())
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                    @else
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $reviews->previousPageUrl() }}" tabindex="-1">Previous</a>
+                        </li>
+                    @endif
+
+                    @foreach ($reviews->getUrlRange(1, $reviews->lastPage()) as $page => $url)
+                        <li class="page-item {{ $page == $reviews->currentPage() ? 'active' : '' }}">
+                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                        </li>
+                    @endforeach
+
+                    @if ($reviews->hasMorePages())
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $reviews->nextPageUrl() }}">Next</a>
+                        </li>
+                    @else
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    @endif
+                </ul>
+            </nav>
           </div>
       </div>
   </div>

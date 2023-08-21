@@ -12,7 +12,7 @@ class RepositoryController extends Controller
      */
     public function index()
     {
-        $repositories = Repository::all();
+        $repositories = Repository::paginate(9);
 
         return view('repositories.index', compact('repositories'));
     }

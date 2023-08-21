@@ -31,19 +31,12 @@ class DashboardController extends Controller
         ->groupBy('month')
         ->orderBy('month')
         ->pluck('count', 'month');
-        $newUsersPerMonth = User::select(DB::raw('YEAR(created_at) year, MONTH(created_at) month, COUNT(*) as count'))
-        ->groupBy('year', 'month')
-        ->orderBy('year', 'asc')
-        ->orderBy('month', 'asc')
+
+        $newUsersPerMonth = User::select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') AS month,  COUNT(*) as count"))
+        ->groupBy('month')
+        ->orderBy('month')
         ->pluck('count', 'month');
 
-    // $months = [];
-    // $userCounts = [];
-
-    // foreach ($newUsersPerMonth as $item) {
-    //     $months[] = $item->year . '-' . $item->month;
-    //     $userCounts[] = $item->count;
-    // }
         // Pass the data to the view
         return view('dashboard.index', compact('userCount','bookCount','authorCount','borrowCount','mostBorrowedBook','mostBorrowedUser','borrowsPerMonth','newUsersPerMonth'));
 
@@ -52,7 +45,7 @@ class DashboardController extends Controller
     public function users()
 {
     // $users = User::all(); // Retrieve all users from the `users` table
-    $users = User::where('role_id', 2)->get();
+    $users = User::where('role_id', 2)->paginate(9);
 
 
     return view('dashboard.users.users', compact('users'));
@@ -60,7 +53,7 @@ class DashboardController extends Controller
 
 public function books()
 {
-    $books = Book::all(); // Retrieve all users from the `users` table
+    $books = Book::paginate(9); // Retrieve all users from the `users` table
 
     return view('dashboard.books.index', compact('books'));
 }

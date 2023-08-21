@@ -12,7 +12,7 @@
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Reviews</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Researches</h6>
       </div>
       <div class="card-body">
           <div class="table-responsive">
@@ -20,6 +20,7 @@
               <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                       <tr>
+                        <th>ID</th>
                         <th>Title</th>
                         <th>Author</th>
                         <th>File link</th>
@@ -28,8 +29,9 @@
                         <th>Action</th>
                       </tr>
                   </thead>
-                  <tfoot>
+                  {{-- <tfoot>
                       <tr>
+                        <th>ID</th>
                         <th>Title</th>
                         <th>Author</th>
                         <th>File link</th>
@@ -37,10 +39,11 @@
                         <th>Added by</th>
                         <th>Action</th>
                       </tr>
-                  </tfoot>
+                  </tfoot> --}}
                   <tbody>
                     @foreach($repositories as $repository)
                     <tr>
+                        <td>{{ $repository->id }}</td>
                         <td>{{ $repository->title }}</td>
                         <td>{{ $repository->author }}</td>
                             <td>{{ $repository->file_path }}</td>
@@ -62,6 +65,35 @@
                 </tbody>
 
               </table>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    @if ($repositories->onFirstPage())
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                    @else
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $repositories->previousPageUrl() }}" tabindex="-1">Previous</a>
+                        </li>
+                    @endif
+
+                    @foreach ($repositories->getUrlRange(1, $repositories->lastPage()) as $page => $url)
+                        <li class="page-item {{ $page == $repositories->currentPage() ? 'active' : '' }}">
+                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                        </li>
+                    @endforeach
+
+                    @if ($repositories->hasMorePages())
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $repositories->nextPageUrl() }}">Next</a>
+                        </li>
+                    @else
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    @endif
+                </ul>
+            </nav>
           </div>
       </div>
   </div>

@@ -17,7 +17,7 @@ class BorrowController extends Controller
     public function index()
     {
         // Retrieve all borrows
-        $borrows = Borrow::all();
+        $borrows = Borrow::paginate(9);
 
         return view('borrows.index', compact('borrows'));
     }

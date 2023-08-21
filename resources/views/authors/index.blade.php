@@ -25,6 +25,14 @@
                     <th>Action</th>
                 </tr>
             </thead>
+            <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Bio</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
             <tbody>
                 @foreach ($authors as $author)
                     <tr>
@@ -43,6 +51,35 @@
                 @endforeach
             </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                @if ($authors->onFirstPage())
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $authors->previousPageUrl() }}" tabindex="-1">Previous</a>
+                    </li>
+                @endif
+
+                @foreach ($authors->getUrlRange(1, $authors->lastPage()) as $page => $url)
+                    <li class="page-item {{ $page == $authors->currentPage() ? 'active' : '' }}">
+                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+
+                @if ($authors->hasMorePages())
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $authors->nextPageUrl() }}">Next</a>
+                    </li>
+                @else
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                @endif
+            </ul>
+        </nav>
     </div>
 </div>
 </div>

@@ -28,6 +28,17 @@
                     <th>Actions</th>
                 </tr>
             </thead>
+            {{-- <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Book</th>
+                    <th>User</th>
+                    <th>Borrowed At</th>
+                    <th>Due Date</th>
+                    <th>Returned</th>
+                    <th>Actions</th>
+                </tr>
+            </tfoot> --}}
             <tbody>
                 @foreach ($borrows as $borrow)
                 <tr>
@@ -57,6 +68,36 @@
                 @endforeach
             </tbody>
         </table>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                @if ($borrows->onFirstPage())
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $borrows->previousPageUrl() }}" tabindex="-1">Previous</a>
+                    </li>
+                @endif
+
+                @foreach ($borrows->getUrlRange(1, $borrows->lastPage()) as $page => $url)
+                    <li class="page-item {{ $page == $borrows->currentPage() ? 'active' : '' }}">
+                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+
+                @if ($borrows->hasMorePages())
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $borrows->nextPageUrl() }}">Next</a>
+                    </li>
+                @else
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                @endif
+            </ul>
+        </nav>
     </div>
 </div>
 </div>
