@@ -10,11 +10,24 @@ class AuthorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $authors = Author::paginate(9);
-        return view('authors.index', compact('authors'));
+    // public function index()
+    // {
+    //     $authors = Author::paginate(9);
+    //     return view('authors.index', compact('authors'));
+    // }
+    public function index(Request $request)
+{
+    $query = Author::query();
+
+    if ($request->has('search')) {
+        $query->where('name', 'like', '%' . $request->input('search') . '%');
     }
+
+    $authors = $query->paginate(9); // Adjust the pagination size as needed
+
+    return view('authors.index', compact('authors'));
+}
+
 
     /**
      * Show the form for creating a new resource.

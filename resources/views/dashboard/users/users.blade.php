@@ -9,6 +9,17 @@
     <!-- Add New Book Button -->
     <a href="{{ route('users.create') }}" class="btn btn-primary mb-4">Add New User</a>
 </div>
+
+<!-- Search Input Field -->
+<form action="{{ route('userstable') }}" method="GET" class="mb-3">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search users" name="search">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">

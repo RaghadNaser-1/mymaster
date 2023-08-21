@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Borrow;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -42,19 +43,69 @@ class DashboardController extends Controller
 
     }
 
-    public function users()
-{
-    // $users = User::all(); // Retrieve all users from the `users` table
-    $users = User::where('role_id', 2)->paginate(9);
+//     public function users()
+// {
+//     // $users = User::all(); // Retrieve all users from the `users` table
+//     $users = User::where('role_id', 2)->paginate(9);
 
+
+//     return view('dashboard.users.users', compact('users'));
+// }
+
+public function users(Request $request)
+{
+    $query = User::query();
+
+    if ($request->has('search')) {
+        $query->where('name', 'like', '%' . $request->input('search') . '%')
+              ->orWhere('email', 'like', '%' . $request->input('search') . '%');
+    }
+
+    $users = $query->paginate(9);
 
     return view('dashboard.users.users', compact('users'));
 }
 
-public function books()
-{
-    $books = Book::paginate(9); // Retrieve all users from the `users` table
+// public function books(Request $request)
+// {
+//     // $books = Book::paginate(9); // Retrieve all users from the `users` table
 
-    return view('dashboard.books.index', compact('books'));
+//     // return view('dashboard.books.index', compact('books'));
+//     $query = Book::query();
+
+//     if ($request->has('search')) {
+//         $query->where('title', 'like', '%' . $request->input('search') . '%');
+//     }
+
+//     if ($request->has('category')) {
+//         $query->where('category_id', $request->input('category'));
+//     }
+
+//     $books = $query->paginate(9);
+//     // dd($query->toSql());
+
+//     $categories = Category::all(); // Assuming you have a Category model and table
+
+//     return view('dashboard.books.index', compact('books', 'categories'));
+// }
+public function books(Request $request)
+{
+    $search = $request->input('search');
+    $category = $request->input('category');
+
+    $books = Book::query()
+        ->when($search, function ($query, $search) {
+            $query->where('title', 'like', "%{$search}%")
+                ->orWhere('author', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%");
+        })
+        ->when($category, function ($query, $category) {
+            $query->where('category_id', $category);
+        })
+        ->paginate(9);
+
+    $categories = Category::all();
+
+    return view('dashboard.books.index', compact('books', 'categories'));
 }
 }

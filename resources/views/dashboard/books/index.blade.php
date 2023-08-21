@@ -11,6 +11,39 @@
   <!-- Add New Book Button -->
   <a href="{{ route('dashboard.books.create', 'dashboard') }}" class="btn btn-primary mb-4">Add New Book</a>
 </div>
+
+<form action="{{ route('bookstable', 'dashboard') }}" method="GET" class="mb-3">
+    <div class="row">
+        <div class="input-group">
+        {{-- <div class="col-md-4"> --}}
+            <input type="text" class="form-control" placeholder="Search by title, author, description" name="search">
+        {{-- </div> --}}
+        {{-- <div class="col-md-4"> --}}
+            <select class="form-control" name="category">
+                <option value="">All Categories</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        {{-- </div> --}}
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+        </div>
+    </div>
+</form>
+{{-- <form class="form-inline" action="{{ route('bookstable') }}" method="GET" class="mb-3">
+    <div class="input-group">
+        <input class="form-control form-control-lg" type="search" placeholder="Book, Author.." aria-label="Search" name="search">
+        <select class="form-select form-select-lg" name="category">
+            <option value="">All Categories</option>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+</form> --}}
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">

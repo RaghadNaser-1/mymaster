@@ -9,6 +9,16 @@
             <!-- Add New Book Button -->
             <a href="{{ route('authors.create') }}" class="btn btn-primary mb-4">Add New Author</a>
         </div>
+
+        <form action="{{ route('authors.index') }}" method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search by author name...">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Authors</h6>
