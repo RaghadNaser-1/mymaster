@@ -18,15 +18,28 @@ class RepositoryController extends Controller
     // }
     public function index(Request $request)
 {
+    $search = $request->input('search');
+    $acceptedFilter = $request->input('accepted');
+
     $query = Repository::query()->with('user');
 
-    if ($request->has('search')) {
-        $searchTerm = $request->input('search');
-        $query->where('title', 'like', '%' . $searchTerm . '%')
-            ->orWhere('author', 'like', '%' . $searchTerm . '%')
-            ->orWhereHas('user', function ($subquery) use ($searchTerm) {
-                $subquery->where('name', 'like', '%' . $searchTerm . '%');
+    $query->when($search, function ($query, $search) {
+        $query->where('title', 'like', "%{$search}%")
+            ->orWhere('author', 'like', "%{$search}%")
+            ->orWhereHas('user', function ($subquery) use ($search) {
+                $subquery->where('name', 'like', "%{$search}%");
             });
+    });
+
+    if ($acceptedFilter !== null) {
+        if ($acceptedFilter === '1') {
+            $query->where('accepted', true);
+        } elseif ($acceptedFilter === '0') {
+            $query->where(function ($subquery) {
+                $subquery->where('accepted', false)
+                    ->orWhereNull('accepted');
+            });
+        }
     }
 
     $repositories = $query->paginate(9); // Adjust the pagination size as needed

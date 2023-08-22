@@ -17,13 +17,7 @@
         </div>
     </div>
 </form>
-<div class="mb-4">
-    @if ($reviews->total() > 0)
-        <p>{{ $reviews->total() }} results found.</p>
-    @else
-        <p>No results found.</p>
-    @endif
-</div>
+
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">
@@ -35,7 +29,7 @@
               <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                       <tr>
-                          <th>ID</th>
+                          <th>#</th>
                           <th>User</th>
                           <th>Book</th>
                           <th>Comment</th>
@@ -56,9 +50,13 @@
                       </tr>
                   </tfoot> --}}
                   <tbody>
+                    @php
+                    $rowNumber = ($reviews->currentPage() - 1) * $reviews->perPage() + 1;
+                @endphp
+
                     @foreach ($reviews as $review)
                         <tr>
-                            <td>{{ $review->id }}</td>
+                            <td>{{ $rowNumber++ }}</td>
                             <td>{{ $review->user->name }}</td>
                             <td>{{ $review->book->title }}</td>
                             <td>{{ $review->comment }}</td>
@@ -77,6 +75,13 @@
                 </tbody>
 
               </table>
+              <div class="mb-4">
+                @if ($reviews->total() > 0)
+                    <p>{{ $reviews->total() }} results found.</p>
+                @else
+                    <p>No results found.</p>
+                @endif
+            </div>
               <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-end">
                     @if ($reviews->onFirstPage())

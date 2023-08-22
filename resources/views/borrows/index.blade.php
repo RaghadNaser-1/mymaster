@@ -19,14 +19,6 @@
             </div>
         </form>
 
-<div class="mb-4">
-    @if ($borrows->total() > 0)
-        <p>{{ $borrows->total() }} results found.</p>
-    @else
-        <p>No results found.</p>
-    @endif
-</div>
-
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Borrow Records</h6>
@@ -37,7 +29,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>#</th>
                     <th>Book</th>
                     <th>User</th>
                     <th>Borrowed At</th>
@@ -58,9 +50,13 @@
                 </tr>
             </tfoot> --}}
             <tbody>
+                @php
+                $rowNumber = ($borrows->currentPage() - 1) * $borrows->perPage() + 1;
+            @endphp
+
                 @foreach ($borrows as $borrow)
                 <tr>
-                    <td>{{ $borrow->id }}</td>
+                    <td>{{ $rowNumber++ }}</td>
                     <td>{{ $borrow->book->title }}</td>
                     <td>{{ $borrow->user->name }}</td>
                     <td>{{ $borrow->borrowed_at }}</td>
@@ -86,7 +82,13 @@
                 @endforeach
             </tbody>
         </table>
-
+        <div class="mb-4">
+            @if ($borrows->total() > 0)
+                <p>{{ $borrows->total() }} results found.</p>
+            @else
+                <p>No results found.</p>
+            @endif
+        </div>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-end">
                 @if ($borrows->onFirstPage())

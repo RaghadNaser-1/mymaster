@@ -13,18 +13,20 @@
 <form action="{{ route('repositories.index') }}" method="GET" class="mb-4">
     <div class="input-group">
         <input type="text" name="search" class="form-control" placeholder="Search by title, author, or user name...">
+
+        <select name="accepted" class="form-control">
+            <option value="" selected>Filter by Accepted</option>
+            <option value="1">Accepted</option>
+            <option value="0">Not Accepted</option>
+        </select>
         <div class="input-group-append">
             <button class="btn btn-primary" type="submit">Search</button>
         </div>
     </div>
 </form>
-<div class="mb-4">
-    @if ($repositories->total() > 0)
-        <p>{{ $repositories->total() }} results found.</p>
-    @else
-        <p>No results found.</p>
-    @endif
-</div>
+
+
+
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">
@@ -36,7 +38,7 @@
               <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                       <tr>
-                        <th>ID</th>
+                        <th>#</th>
                         <th>Title</th>
                         <th>Author</th>
                         <th>File link</th>
@@ -57,9 +59,13 @@
                       </tr>
                   </tfoot> --}}
                   <tbody>
+                    @php
+                    $rowNumber = ($repositories->currentPage() - 1) * $repositories->perPage() + 1;
+                @endphp
+
                     @foreach($repositories as $repository)
                     <tr>
-                        <td>{{ $repository->id }}</td>
+                        <td>{{ $rowNumber++ }}</td>
                         <td>{{ $repository->title }}</td>
                         <td>{{ $repository->author }}</td>
                             <td>{{ $repository->file_path }}</td>
@@ -81,6 +87,13 @@
                 </tbody>
 
               </table>
+              <div class="mb-4">
+                @if ($repositories->total() > 0)
+                    <p>{{ $repositories->total() }} results found.</p>
+                @else
+                    <p>No results found.</p>
+                @endif
+            </div>
               <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-end">
                     @if ($repositories->onFirstPage())

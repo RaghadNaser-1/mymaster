@@ -32,13 +32,7 @@
         </div>
     </div>
 </form>
-<div class="mb-4">
-    @if ($books->total() > 0)
-        <p>{{ $books->total() }} results found.</p>
-    @else
-        <p>No results found.</p>
-    @endif
-</div>
+
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">
@@ -51,7 +45,7 @@
                   <!-- Table Headings -->
                   <thead>
                       <tr>
-                          <th>ID</th>
+                          <th>#</th>
                           <th>Title</th>
                           <th>Author</th>
                           <th>Description</th>
@@ -65,7 +59,7 @@
                   <!-- Table Footings -->
                   <tfoot>
                       <tr>
-                          <th>ID</th>
+                          <th>#</th>
                           <th>Title</th>
                           <th>Author</th>
                           <th>Description</th>
@@ -78,9 +72,12 @@
                   </tfoot>
                   <!-- Table Body -->
                   <tbody>
+                    @php
+                    $rowNumber = ($books->currentPage() - 1) * $books->perPage() + 1;
+                @endphp
                     @foreach ($books as $book)
                         <tr>
-                            <td>{{ $book->id }}</td>
+                            <td>{{ $rowNumber++ }}</td>
                             <td>{{ $book->title }}</td>
                             <td>{{ $book->author }}</td>
                             <td>{{ $book->description }}</td>
@@ -101,6 +98,15 @@
                     @endforeach
                 </tbody>
               </table>
+
+              <div class="mb-4">
+                @if ($books->total() > 0)
+                    <p>{{ $books->total() }} results found.</p>
+                @else
+                    <p>No results found.</p>
+                @endif
+            </div>
+
               <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-end">
                     @if ($books->onFirstPage())

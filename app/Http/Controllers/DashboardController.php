@@ -54,17 +54,20 @@ class DashboardController extends Controller
 
 public function users(Request $request)
 {
-    $query = User::query();
+    $query = User::where('role_id', 2);
 
     if ($request->has('search')) {
-        $query->where('name', 'like', '%' . $request->input('search') . '%')
-              ->orWhere('email', 'like', '%' . $request->input('search') . '%');
+        $query->where(function ($innerQuery) use ($request) {
+            $innerQuery->where('name', 'like', '%' . $request->input('search') . '%')
+                       ->orWhere('email', 'like', '%' . $request->input('search') . '%');
+        });
     }
 
     $users = $query->paginate(9);
 
     return view('dashboard.users.users', compact('users'));
 }
+
 
 // public function books(Request $request)
 // {

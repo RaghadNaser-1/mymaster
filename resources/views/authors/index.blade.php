@@ -18,13 +18,6 @@
                 </div>
             </div>
         </form>
-        <div class="mb-4">
-            @if ($authors->total() > 0)
-                <p>{{ $authors->total() }} results found.</p>
-            @else
-                <p>No results found.</p>
-            @endif
-        </div>
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -36,7 +29,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>#</th>
                     <th>Name</th>
                     <th>Bio</th>
                     <th>Action</th>
@@ -44,16 +37,20 @@
             </thead>
             <tfoot>
                 <tr>
-                    <th>ID</th>
+                    <th>#</th>
                     <th>Name</th>
                     <th>Bio</th>
                     <th>Action</th>
                 </tr>
             </tfoot>
             <tbody>
+                @php
+                $rowNumber = ($authors->currentPage() - 1) * $authors->perPage() + 1;
+            @endphp
+
                 @foreach ($authors as $author)
                     <tr>
-                        <td>{{ $author->id }}</td>
+                        <td>{{ $rowNumber++ }}</td>
                         <td>{{ $author->name }}</td>
                         <td>{{ $author->bio }}</td>
                         <td>
@@ -68,6 +65,15 @@
                 @endforeach
             </tbody>
         </table>
+
+        <div class="mb-4">
+            @if ($authors->total() > 0)
+                <p>{{ $authors->total() }} results found.</p>
+            @else
+                <p>No results found.</p>
+            @endif
+        </div>
+        
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-end">
                 @if ($authors->onFirstPage())

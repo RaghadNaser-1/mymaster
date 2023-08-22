@@ -17,13 +17,6 @@
         </div>
     </div>
 </form>
-<div class="mb-4">
-    @if ($categories->total() > 0)
-        <p>{{ $categories->total() }} results found.</p>
-    @else
-        <p>No results found.</p>
-    @endif
-</div>
 
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
@@ -36,7 +29,7 @@
               <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                       <tr>
-                          <th>ID</th>
+                          <th>#</th>
                           <th>Name</th>
                           <th>Action</th>
                       </tr>
@@ -49,9 +42,12 @@
                       </tr>
                   </tfoot> --}}
                   <tbody>
+                    @php
+        $rowNumber = ($categories->currentPage() - 1) * $categories->perPage() + 1;
+    @endphp
                     @foreach ($categories as $category)
                         <tr>
-                            <td>{{ $category->id }}</td>
+                            <td>{{ $rowNumber++ }}</td>
                             <td>{{ $category->name }}</td>
                             <td>
                                 <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary" style="width: 75px;">Edit</a>
@@ -66,6 +62,13 @@
                 </tbody>
 
               </table>
+              <div class="mb-4">
+                @if ($categories->total() > 0)
+                    <p>{{ $categories->total() }} results found.</p>
+                @else
+                    <p>No results found.</p>
+                @endif
+            </div>
               <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-end">
                     @if ($categories->onFirstPage())

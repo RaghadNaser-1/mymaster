@@ -19,13 +19,7 @@
         </div>
     </div>
 </form>
-<div class="mb-4">
-    @if ($users->total() > 0)
-        <p>{{ $users->total() }} results found.</p>
-    @else
-        <p>No results found.</p>
-    @endif
-</div>
+
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">
@@ -37,7 +31,7 @@
               <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                       <tr>
-                          <th>ID</th>
+                          <th>#</th>
                           <th>Name</th>
                           <th>Email</th>
                           <th>Action</th>
@@ -52,9 +46,12 @@
                       </tr>
                   </tfoot> --}}
                   <tbody>
+                    @php
+        $rowNumber = ($users->currentPage() - 1) * $users->perPage() + 1;
+    @endphp
                     @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->id }}</td>
+                            <td>{{ $rowNumber++ }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
@@ -70,6 +67,15 @@
                 </tbody>
 
               </table>
+              
+              <div class="mb-4">
+                @if ($users->total() > 0)
+                    <p>{{ $users->total() }} results found.</p>
+                @else
+                    <p>No results found.</p>
+                @endif
+            </div>
+
               <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-end">
                     @if ($users->onFirstPage())
