@@ -30,7 +30,7 @@ class HomeController extends Controller
             $query->where('title', 'like', '%'.$searchQuery.'%')
                 ->orWhere('author', 'like', '%'.$searchQuery.'%');
         })
-        ->get();
+        ->paginate(9);
 
     return view('digital', compact('searchResults'));
 }

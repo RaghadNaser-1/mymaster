@@ -43,7 +43,7 @@
                         <th>Author</th>
                         <th>File link</th>
                         <th>Accepted</th>
-                        <th>Added by</th>
+                        <th>User</th>
                         <th>Action</th>
                       </tr>
                   </thead>

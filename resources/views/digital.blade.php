@@ -8,73 +8,107 @@
     </div>
 @endif
 
-    <div class="container-fluid px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-lg-10 text-center mt-4">
-                <h1 class="mt-0">Digital Repository</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="text-center mb-4">
+                <h1 class="display-4">Digital Repository</h1>
                 <hr class="divider" />
+                <p class="lead">Explore a wide range of research papers, theses, dissertations, and scholarly works.</p>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-8 offset-md-2">
-                        <p>Welcome to our university's digital repository. Here, you can explore a wide range of research papers, theses, dissertations, and other scholarly works produced by our students and faculty members.</p>
-                    </div>
+            <div class="row mb-4">
+                <div class="col-md-8 offset-md-2">
+                    <form class="input-group" action="{{ route('repository') }}" method="GET">
+                        <input type="search" class="form-control" placeholder="Search the repository" aria-label="Search" name="search">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </form>
                 </div>
+            </div>
 
-                <div class="row mt-4">
-                    <div class="col-md-8 offset-md-2">
-                        <h2>Search the Repository</h2>
-                        <p>Use the search feature to find specific items in the digital repository:</p>
-                        <form class="form-inline" action="{{ route('repository') }}" method="GET">
-                            <div class="input-group">
-                                <input class="form-control" type="search" placeholder="Search the repository" aria-label="Search" name="search">
-                                <button class="btn btn-primary" type="submit">Search</button>
-                            </div>
-                        </form>
+            @if ($searchResults->total() > 0)
+
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                        $rowNumber = ($searchResults->currentPage() - 1) * $searchResults->perPage() + 1;
+                        @endphp
+                        @foreach ($searchResults as $item)
+                        <tr>
+                            <td>{{ $rowNumber++ }}</td>
+                            <td>{{ $item->title }}</td>
+                            <td>{{ $item->author }}</td>
+                            <td>
+                                <a href="{{ $item->file_path }}" target="_blank" class="btn btn-primary">View</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-between mb-4">
+                    <div class="">
+                        <p>{{ $searchResults->total() }} results found.</p>
                     </div>
-                </div>
-
-                <div class="row mt-4">
-                    <div class="col-md-8 offset-md-2">
+                    <div class="">
                         <button class="btn btn-primary" id="addResearchButton">Add New Research</button>
                     </div>
-                </div>
+                {{-- </div> --}}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                        @if ($searchResults->onFirstPage())
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $searchResults->previousPageUrl() }}" tabindex="-1">Previous</a>
+                            </li>
+                        @endif
 
-                @if ($searchResults->count() > 0)
-                    <div class="row mt-4">
-                        <div class="col-md-10 offset-md-1">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Title</th>
-                                        <th>Author</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($searchResults as $item)
-                                        <tr>
-                                            <td>{{ $item->title }}</td>
-                                            <td>{{ $item->author }}</td>
-                                            <td>
-                                                <a href="{{ $item->file_path }}" target="_blank" class="btn btn-primary">View</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                @else
-                    <div class="row mt-4">
-                        <div class="col-md-8 offset-md-2">
-                            <p>No results found.</p>
-                        </div>
-                    </div>
-                @endif
+                        @foreach ($searchResults->getUrlRange(1, $searchResults->lastPage()) as $page => $url)
+                            <li class="page-item {{ $page == $searchResults->currentPage() ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                            </li>
+                        @endforeach
+
+                        @if ($searchResults->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $searchResults->nextPageUrl() }}">Next</a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
             </div>
+            </div>
+
+            {{-- <div class="d-flex justify-content-end mt-4">
+                {{ $searchResults->links() }}
+            </div> --}}
+
+            @else
+            <div class="row mt-4">
+                <div class="col-md-8 offset-md-2">
+                    <p>No results found.</p>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
-
+</div>
     <!-- Modal -->
     <div class="modal fade" id="addResearchModal" tabindex="-1" role="dialog" aria-labelledby="addResearchModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

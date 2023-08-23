@@ -11,7 +11,7 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        
+
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -137,6 +137,8 @@
             object-fit: cover;
             width: 100%;
             height: 100%;
+            border-radius: 5px;
+
         }
 
         .card-img-top.placeholder-image {
@@ -155,6 +157,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 5px;
+
         }
 
         .book-card:hover .book-overlay {

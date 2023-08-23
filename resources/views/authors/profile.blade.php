@@ -18,7 +18,7 @@
     <hr class="divider-left" >
 
     <div class="author-bio">
-        <h2>Biography:</h2>
+        <h2>Biography</h2>
         @if ($author->bio)
             <p>{{ $author->bio }}</p>
         @else
@@ -31,20 +31,15 @@
         <h2>Books by {{ $author->name }}</h2>
         <ul class="list-unstyled row">
             @foreach ($author->books as $book)
-                <li class="col-md-3">
-                    <div class="card">
-                        <a href="{{ route('books.show', $book->id) }}">
-                            <img src="{{ $book->image }}" class="card-img-top book-image" alt="{{ $book->title }}" >
-                        </a>
-                                                {{-- <div class="card-body">
-                            <h5 class="card-title">{{ $book->title }}</h5>
-                            <p class="card-text">Author: {{ $book->author }}</p>
-                            <p class="card-text">Description: {{ $book->description }}</p>
-                            <p class="card-text">Category: {{ $book->category->name }}</p>
-                        </div> --}}
-                    </div>
-                </li>
-            @endforeach
+            <li class="col-md-3 mb-4">
+                <div class="card book-card">
+                    <a href="{{ route('books.show', $book->id) }}">
+                        <img src="{{ $book->image }}" class="card-img-top book-image" alt="{{ $book->title }}">
+                    </a>
+                </div>
+            </li>
+        @endforeach
+
         </ul>
     </div>
 </div>
@@ -52,7 +47,8 @@
     .book-image {
   width: 100%; /* Set your desired width */
   height: 450px; /* Set your desired height */
-  object-fit: fill; /* Maintain aspect ratio and cover the container (use cover) */
+  object-fit: cover; /* Maintain aspect ratio and cover the container (use cover) */
+  border-radius: 10px;
 }
 .divider-left {
             height: 0.2rem;
@@ -61,6 +57,17 @@
     background-color: #f4623a;
     opacity: 1;
         }
+        .book-card {
+        background-color: white;
+        border: 1px solid #f2f2f2;
+        /* padding: 20px; */
+        border-radius: 10px;
+        transition: transform 0.2s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+        .book-card:hover {
+        transform: translateY(-5px);
+    }
 </style>
 
 

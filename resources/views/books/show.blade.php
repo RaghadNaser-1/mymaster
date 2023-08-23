@@ -27,8 +27,9 @@
         <div class=" mb-4">
             <div class="row g-4">
                 <div class="col-md-3">
-                    <img src="{{ $book->image }}" class="card-img" alt="{{ $book->title }}" width="350" height="500">
+                    <img src="{{ $book->image }}" class="card-img img-fluid" alt="{{ $book->title }}">
                 </div>
+
                 {{-- <div class="col-md-1"></div> --}}
                 <div class="card col-md-9">
                     <div class="card-body">
@@ -70,7 +71,8 @@
             <!-- Book information... -->
 
            <!-- Reviews -->
-        <h3>Reviews</h3>
+        {{-- <h3>Reviews</h3> --}}
+        <h2 class="mb-4 highlighted">Reviews</h2>
 
         @forelse ($book->reviews as $review)
             <div class="review">
@@ -120,14 +122,14 @@
 
     <div class="container">
         <div class="related-books mt-5">
-            <h2 class="mb-4">Related Books</h2>
+            <h2 class="mb-4 highlighted">Related Books</h2>
             <div class="row">
                 @foreach ($relatedBooks as $relatedBook)
                     <div class="col-md-3 mb-4">
                         <a href="{{ route('books.show', $relatedBook->id) }}">
                         <div class="card h-100">
 
-                            <img src="{{ $relatedBook->image }}" class="card-img-top" alt="{{ $relatedBook->title }}" height="100%">
+                            <img src="{{ $relatedBook->image }}" class="card-img" alt="{{ $relatedBook->title }}" height="100%">
                             {{-- <div class="card-body text-center">
                                 <a href="{{ route('books.show', $relatedBook->id) }}" class="btn btn-primary">View Details</a>
                             </div> --}}
@@ -141,6 +143,15 @@
 </div>
 
 <style>
+    h2.highlighted {
+        background-color: #f4623a; /* Background color for highlighting */
+        color: white; /* Text color for highlighted background */
+        font-size: 24px; /* Change the font size to your desired size */
+        font-weight: bold; /* You can adjust the font weight as needed */
+        margin-bottom: 20px; /* Add some spacing at the bottom */
+        padding: 10px; /* Add some padding to the highlighted area */
+        border-radius: 5px; /* Add rounded corners */
+    }
     .rating {
     color: #f4623a;
 }

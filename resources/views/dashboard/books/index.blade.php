@@ -82,7 +82,7 @@
                             <td>{{ $book->author }}</td>
                             <td>{{ $book->description }}</td>
                             <td>{{ $book->category->name }}</td>
-                            <td><img src="{{ $book->image }}" alt="Book Image" height="50"></td>
+                            <td><img src="{{ $book->image }}" alt="Book Image" height="75" width="50"></td>
                             <td>{{ $book->featured ? 'Yes' : 'No' }}</td>
                             <td>{{ $book->quantity }}</td>
                             <td>
