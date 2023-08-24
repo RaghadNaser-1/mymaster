@@ -54,7 +54,7 @@
                         <td>{{ $author->name }}</td>
                         <td>{{ $author->bio }}</td>
                         <td>
-                            <a href="{{ route('authors.edit', $author->id) }}" class="btn btn-primary" style="width: 75px;">Edit</a>
+                            <a href="{{ route('authors.edit', $author->id) }}" class="btn btn-primary mb-1" style="width: 75px;">Edit</a>
                             <form action="{{ route('authors.destroy', $author->id) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
@@ -73,7 +73,7 @@
                 <p>No results found.</p>
             @endif
         </div>
-        
+
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-end">
                 @if ($authors->onFirstPage())

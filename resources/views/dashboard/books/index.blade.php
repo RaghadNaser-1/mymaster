@@ -86,7 +86,7 @@
                             <td>{{ $book->featured ? 'Yes' : 'No' }}</td>
                             <td>{{ $book->quantity }}</td>
                             <td>
-                                <a href="{{ route('dashboard.books.edit', $book->id) }}" class="btn btn-primary" style="width: 75px;">Edit</a>
+                                <a href="{{ route('dashboard.books.edit', $book->id) }}" class="btn btn-primary mb-1" style="width: 75px;">Edit</a>
                                 <form action="{{ route('dashboard.books.destroy', $book->id) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')

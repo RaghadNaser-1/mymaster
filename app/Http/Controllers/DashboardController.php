@@ -21,9 +21,11 @@ class DashboardController extends Controller
         $bookCount = Book::count();
         $authorCount = Author::count();
         $borrowCount = Borrow::count();
+
         $mostBorrowedBook = Book::withCount('borrows')
         ->orderBy('borrows_count', 'desc')
         ->first();
+        
         $mostBorrowedUser = User::withCount('borrows')
         ->orderByDesc('borrows_count')
         ->first();

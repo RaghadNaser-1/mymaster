@@ -71,11 +71,11 @@
 
 
                         <td>
-                            <a href="{{ route('borrows.edit', $borrow) }}" class="btn btn-primary" style="width: 75px;">Edit</a>
+                            <a href="{{ route('borrows.edit', $borrow) }}" class="btn btn-primary mb-1" style="width: 75px;">Edit</a>
                             <form action="{{ route('borrows.destroy', $borrow) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this borrow record?')" style="width: 75px;">Delete</button>
+                                <button type="submit" class="btn btn-danger mb-1" onclick="return confirm('Are you sure you want to delete this borrow record?')" style="width: 75px;">Delete</button>
                             </form>
                         </td>
                     </tr>

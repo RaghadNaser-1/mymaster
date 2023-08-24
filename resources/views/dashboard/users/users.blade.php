@@ -55,11 +55,11 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <a href="{{ route('users.edit', $user) }}" class="btn btn-primary" style="width: 75px;">Edit</a>
+                                <a href="{{ route('users.edit', $user) }}" class="btn btn-primary mb-1" style="width: 75px;">Edit</a>
                                 <form action="{{ route('users.destroy', $user) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')" style="width: 75px;">Delete</button>
+                                    <button type="submit" class="btn btn-danger mb-1" onclick="return confirm('Are you sure you want to delete this user?')" style="width: 75px;">Delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -67,7 +67,7 @@
                 </tbody>
 
               </table>
-              
+
               <div class="mb-4">
                 @if ($users->total() > 0)
                     <p>{{ $users->total() }} results found.</p>

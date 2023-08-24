@@ -75,7 +75,7 @@
                             <td>{{ $repository->user->name ?? '' }}</td>
 
                             <td>
-                                <a href="{{ route('repositories.edit', $repository) }}" class="btn btn-primary" style="width: 75px;">Edit</a>
+                                <a href="{{ route('repositories.edit', $repository) }}" class="btn btn-primary mb-1" style="width: 75px;">Edit</a>
                                 <form action="{{ route('repositories.destroy', $repository) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
