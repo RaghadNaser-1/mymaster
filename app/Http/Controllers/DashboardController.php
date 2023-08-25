@@ -25,7 +25,7 @@ class DashboardController extends Controller
         $mostBorrowedBook = Book::withCount('borrows')
         ->orderBy('borrows_count', 'desc')
         ->first();
-        
+
         $mostBorrowedUser = User::withCount('borrows')
         ->orderByDesc('borrows_count')
         ->first();
@@ -35,10 +35,12 @@ class DashboardController extends Controller
         ->orderBy('month')
         ->pluck('count', 'month');
 
-        $newUsersPerMonth = User::select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') AS month,  COUNT(*) as count"))
+        $newUsersPerMonth = User::where('role_id', 2)
+        ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') AS month, COUNT(*) as count"))
         ->groupBy('month')
         ->orderBy('month')
         ->pluck('count', 'month');
+
 
         // Pass the data to the view
         return view('dashboard.index', compact('userCount','bookCount','authorCount','borrowCount','mostBorrowedBook','mostBorrowedUser','borrowsPerMonth','newUsersPerMonth'));
